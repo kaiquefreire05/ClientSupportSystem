@@ -1,3 +1,6 @@
+using ClientSupportSystem.Database;
+using Microsoft.EntityFrameworkCore;
+
 namespace ClientSupportSystem
 {
     public class Program
@@ -9,8 +12,12 @@ namespace ClientSupportSystem
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
-            var app = builder.Build();
+            // Database
+            builder.Services.AddEntityFrameworkSqlServer()
+                .AddDbContext<ApplicationDBContext>(o => o.UseSqlServer(builder.Configuration.GetConnectionString("Database")));
 
+            var app = builder.Build();
+            
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
             {
