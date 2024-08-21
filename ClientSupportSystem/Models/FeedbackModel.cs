@@ -1,0 +1,18 @@
+﻿namespace ClientSupportSystem.Models
+{
+    public class FeedbackModel
+    {
+        public int Id { get; set; }
+        public int Rating { get; set; }
+        public string Comments { get; set; }
+        public int TicketId { get; set; }
+        public int UserId { get; set; }
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+
+        // Navigation properties
+
+        public virtual TicketModel Ticket { get; set; }
+        public virtual UserModel User { get; set; }
+
+    }
+}

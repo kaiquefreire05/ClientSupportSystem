@@ -1,7 +1,16 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\kaiqu\\OneDrive\\Documentos\\csharp-codes\\ClientSupportSystem\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{D010429A-C290-4D15-87F9-BFB3161E69EA}|ClientSupportSystem\\ClientSupportSystem.csproj|c:\\users\\kaiqu\\onedrive\\documentos\\csharp-codes\\clientsupportsystem\\clientsupportsystem\\models\\feedbackmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D010429A-C290-4D15-87F9-BFB3161E69EA}|ClientSupportSystem\\ClientSupportSystem.csproj|solutionrelative:clientsupportsystem\\models\\feedbackmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D010429A-C290-4D15-87F9-BFB3161E69EA}|ClientSupportSystem\\ClientSupportSystem.csproj|c:\\users\\kaiqu\\onedrive\\documentos\\csharp-codes\\clientsupportsystem\\clientsupportsystem\\models\\ticketcommentmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D010429A-C290-4D15-87F9-BFB3161E69EA}|ClientSupportSystem\\ClientSupportSystem.csproj|solutionrelative:clientsupportsystem\\models\\ticketcommentmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,11 +18,37 @@
       "DocumentGroups": [
         {
           "DockedWidth": 196,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "FeedbackModel.cs",
+              "DocumentMoniker": "C:\\Users\\kaiqu\\OneDrive\\Documentos\\csharp-codes\\ClientSupportSystem\\ClientSupportSystem\\Models\\FeedbackModel.cs",
+              "RelativeDocumentMoniker": "ClientSupportSystem\\Models\\FeedbackModel.cs",
+              "ToolTip": "C:\\Users\\kaiqu\\OneDrive\\Documentos\\csharp-codes\\ClientSupportSystem\\ClientSupportSystem\\Models\\FeedbackModel.cs",
+              "RelativeToolTip": "ClientSupportSystem\\Models\\FeedbackModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-21T11:40:22.176Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "TicketCommentModel.cs",
+              "DocumentMoniker": "C:\\Users\\kaiqu\\OneDrive\\Documentos\\csharp-codes\\ClientSupportSystem\\ClientSupportSystem\\Models\\TicketCommentModel.cs",
+              "RelativeDocumentMoniker": "ClientSupportSystem\\Models\\TicketCommentModel.cs",
+              "ToolTip": "C:\\Users\\kaiqu\\OneDrive\\Documentos\\csharp-codes\\ClientSupportSystem\\ClientSupportSystem\\Models\\TicketCommentModel.cs",
+              "RelativeToolTip": "ClientSupportSystem\\Models\\TicketCommentModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-21T11:40:08.066Z",
+              "EditorCaption": ""
             }
           ]
         },
