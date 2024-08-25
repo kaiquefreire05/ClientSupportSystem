@@ -1,4 +1,6 @@
 using ClientSupportSystem.Database;
+using ClientSupportSystem.Repositories;
+using ClientSupportSystem.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace ClientSupportSystem
@@ -15,6 +17,11 @@ namespace ClientSupportSystem
             // Database
             builder.Services.AddEntityFrameworkSqlServer()
                 .AddDbContext<ApplicationDBContext>(o => o.UseSqlServer(builder.Configuration.GetConnectionString("Database")));
+
+            builder.Services.AddScoped<IFeedbackRepository, FeedbackRepository>();
+            builder.Services.AddScoped<IKnowledgeRepository, KnowledgeRepository>();
+            builder.Services.AddScoped<ITicketRepository, TicketRepository>();
+            builder.Services.AddScoped<IUserRepository, UserRepository>();
 
             var app = builder.Build();
             
