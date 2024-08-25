@@ -1,7 +1,24 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\kaiqu\\OneDrive\\Documentos\\csharp-codes\\ClientSupportSystem\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{D010429A-C290-4D15-87F9-BFB3161E69EA}|ClientSupportSystem\\ClientSupportSystem.csproj|c:\\users\\kaiqu\\onedrive\\documentos\\csharp-codes\\clientsupportsystem\\clientsupportsystem\\models\\usermodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D010429A-C290-4D15-87F9-BFB3161E69EA}|ClientSupportSystem\\ClientSupportSystem.csproj|solutionrelative:clientsupportsystem\\models\\usermodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D010429A-C290-4D15-87F9-BFB3161E69EA}|ClientSupportSystem\\ClientSupportSystem.csproj|c:\\users\\kaiqu\\onedrive\\documentos\\csharp-codes\\clientsupportsystem\\clientsupportsystem\\models\\loginmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D010429A-C290-4D15-87F9-BFB3161E69EA}|ClientSupportSystem\\ClientSupportSystem.csproj|solutionrelative:clientsupportsystem\\models\\loginmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D010429A-C290-4D15-87F9-BFB3161E69EA}|ClientSupportSystem\\ClientSupportSystem.csproj|c:\\users\\kaiqu\\onedrive\\documentos\\csharp-codes\\clientsupportsystem\\clientsupportsystem\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D010429A-C290-4D15-87F9-BFB3161E69EA}|ClientSupportSystem\\ClientSupportSystem.csproj|solutionrelative:clientsupportsystem\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D010429A-C290-4D15-87F9-BFB3161E69EA}|ClientSupportSystem\\ClientSupportSystem.csproj|c:\\users\\kaiqu\\onedrive\\documentos\\csharp-codes\\clientsupportsystem\\clientsupportsystem\\views\\login\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D010429A-C290-4D15-87F9-BFB3161E69EA}|ClientSupportSystem\\ClientSupportSystem.csproj|solutionrelative:clientsupportsystem\\views\\login\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,11 +26,62 @@
       "DocumentGroups": [
         {
           "DockedWidth": 224,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "UserModel.cs",
+              "DocumentMoniker": "C:\\Users\\kaiqu\\OneDrive\\Documentos\\csharp-codes\\ClientSupportSystem\\ClientSupportSystem\\Models\\UserModel.cs",
+              "RelativeDocumentMoniker": "ClientSupportSystem\\Models\\UserModel.cs",
+              "ToolTip": "C:\\Users\\kaiqu\\OneDrive\\Documentos\\csharp-codes\\ClientSupportSystem\\ClientSupportSystem\\Models\\UserModel.cs",
+              "RelativeToolTip": "ClientSupportSystem\\Models\\UserModel.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAA3wBgAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-25T01:44:49.115Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\kaiqu\\OneDrive\\Documentos\\csharp-codes\\ClientSupportSystem\\ClientSupportSystem\\Views\\Login\\Index.cshtml",
+              "RelativeDocumentMoniker": "ClientSupportSystem\\Views\\Login\\Index.cshtml",
+              "ToolTip": "C:\\Users\\kaiqu\\OneDrive\\Documentos\\csharp-codes\\ClientSupportSystem\\ClientSupportSystem\\Views\\Login\\Index.cshtml",
+              "RelativeToolTip": "ClientSupportSystem\\Views\\Login\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADAAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-08-25T01:40:36.95Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "LoginController.cs",
+              "DocumentMoniker": "C:\\Users\\kaiqu\\OneDrive\\Documentos\\csharp-codes\\ClientSupportSystem\\ClientSupportSystem\\Controllers\\LoginController.cs",
+              "RelativeDocumentMoniker": "ClientSupportSystem\\Controllers\\LoginController.cs",
+              "ToolTip": "C:\\Users\\kaiqu\\OneDrive\\Documentos\\csharp-codes\\ClientSupportSystem\\ClientSupportSystem\\Controllers\\LoginController.cs",
+              "RelativeToolTip": "ClientSupportSystem\\Controllers\\LoginController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-25T01:14:21.802Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "LoginModel.cs",
+              "DocumentMoniker": "C:\\Users\\kaiqu\\OneDrive\\Documentos\\csharp-codes\\ClientSupportSystem\\ClientSupportSystem\\Models\\LoginModel.cs",
+              "RelativeDocumentMoniker": "ClientSupportSystem\\Models\\LoginModel.cs",
+              "ToolTip": "C:\\Users\\kaiqu\\OneDrive\\Documentos\\csharp-codes\\ClientSupportSystem\\ClientSupportSystem\\Models\\LoginModel.cs",
+              "RelativeToolTip": "ClientSupportSystem\\Models\\LoginModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-25T01:30:11.329Z",
+              "EditorCaption": ""
             }
           ]
         },

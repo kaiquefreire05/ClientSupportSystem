@@ -42,7 +42,7 @@ namespace ClientSupportSystem
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Login}/{action=IndexLogin}/{id?}");
+                pattern: "{controller=Login}/{action=Index}/{id?}");
 
             app.Run();
         }
