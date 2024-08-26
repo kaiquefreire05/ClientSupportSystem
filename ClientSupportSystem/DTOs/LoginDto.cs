@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ClientSupportSystem.Models
+namespace ClientSupportSystem.DTOs
 {
-    public class LoginModel
+    public class LoginDto
     {
         [Required(ErrorMessage = "Enter your email")]
         public string Email { get; set; }

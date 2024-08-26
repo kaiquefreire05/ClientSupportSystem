@@ -1,4 +1,6 @@
 using ClientSupportSystem.Database;
+using ClientSupportSystem.Helper;
+using ClientSupportSystem.Helper.Interfaces;
 using ClientSupportSystem.Repositories;
 using ClientSupportSystem.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -18,10 +20,20 @@ namespace ClientSupportSystem
             builder.Services.AddEntityFrameworkSqlServer()
                 .AddDbContext<ApplicationDBContext>(o => o.UseSqlServer(builder.Configuration.GetConnectionString("Database")));
 
+            builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+            builder.Services.AddScoped<ISessionService, SessionService>();
             builder.Services.AddScoped<IFeedbackRepository, FeedbackRepository>();
             builder.Services.AddScoped<IKnowledgeRepository, KnowledgeRepository>();
             builder.Services.AddScoped<ITicketRepository, TicketRepository>();
             builder.Services.AddScoped<IUserRepository, UserRepository>();
+
+            builder.Services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(30); // Defina o tempo de expiração da sessão
+                options.Cookie.HttpOnly = true; // Proteger o cookie de sessão
+                options.Cookie.IsEssential = true; // Necessário para funcionar mesmo com políticas de privacidade
+            });
 
             var app = builder.Build();
             
@@ -39,6 +51,8 @@ namespace ClientSupportSystem
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseSession();
 
             app.MapControllerRoute(
                 name: "default",

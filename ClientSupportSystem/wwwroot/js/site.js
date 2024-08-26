@@ -1,42 +1,41 @@
-﻿// Configuração de alertas
+﻿// Alerts config
 $('.close-alert').click(function () {
     $('.alert').hide('hide');
 });
 
-// Função de criar tabela
+// Function to initialize the DataTables
 function getDatatable(id) {
     $(id).DataTable({
         "ordering": true,
         "paging": true,
         "searching": true,
-        "oLanguage": {
-            "sEmptyTable": "Nenhum registro encontrado na tabela",
-            "sInfo": "Mostrar _START_ até _END_ de _TOTAL_ registros",
-            "sInfoEmpty": "Mostrar 0 até 0 de 0 Registros",
-            "sInfoFiltered": "(Filtrar de _MAX_ total registros)",
-            "sInfoPostFix": "",
-            "sInfoThousands": ".",
-            "sLengthMenu": "Mostrar _MENU_ registros por pagina",
-            "sLoadingRecords": "Carregando...",
-            "sProcessing": "Processando...",
-            "sZeroRecords": "Nenhum registro encontrado",
-            "sSearch": "Pesquisar",
+        "language": {
+            "sEmptyTable": "No records found",
+            "sInfo": "Showing from _START_ to _END_ of _TOTAL_ records",
+            "sInfoEmpty": "Showing 0 to 0 of 0 records",
+            "sInfoFiltered": "(Filtered from _MAX_ total records)",
+            "sLengthMenu": "Show _MENU_ records per page",
+            "sLoadingRecords": "Loading...",
+            "sProcessing": "Processing...",
+            "sZeroRecords": "No matching records found",
+            "sSearch": "Search",
             "oPaginate": {
-                "sNext": "Proximo",
-                "sPrevious": "Anterior",
-                "sFirst": "Primeiro",
-                "sLast": "Ultimo"
+                "sNext": "Next",
+                "sPrevious": "Previous",
+                "sFirst": "First",
+                "sLast": "Last"
             },
             "oAria": {
-                "sSortAscending": ": Ordenar colunas de forma ascendente",
-                "sSortDescending": ": Ordenar colunas de forma descendente"
+                "sSortAscending": ": Sort columns in ascending order",
+                "sSortDescending": ": Sort columns in descending order"
             }
         }
     });
 }
 
-// Configurando a tabela de contatos
-getDatatable("#tabela-contatos")
+
+// Initialize DataTables on the table with id="tickets-table"
+getDatatable("#tickets-table");
 
 // Configurando a tabela de usuários
 getDatatable("#tabela-usuarios")

@@ -1,23 +1,26 @@
-﻿@model LoginModel
+﻿@using ClientSupportSystem.DTOs
+@model LoginDto
 @{
     Layout = "_LayoutDeslogado";
     ViewData["Title"] = "Tela de Login";
 }
 
-<!-- Alertas -->
-@if (TempData["MensagemErro"] != null)
+<br />
+
+<!-- Alerts -->
+@if (TempData["ErrorMessage"] != null)
 {
     <div class="alert alert-danger" role="alert">
         <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">X</button>
-        @TempData["MensagemErro"]
+        @TempData["ErrorMessage"]
     </div>
 }
 
-@if (TempData["MensagemSucesso"] != null)
+@if (TempData["SuccessMessage"] != null)
 {
     <div class="alert alert-success" role="alert">
         <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">X</button>
-        @TempData["MensagemSucesso"]
+        @TempData["SuccessMessage"]
     </div>
 }
 <br />

@@ -14,7 +14,7 @@ namespace ClientSupportSystem.Repositories
 
         public UserModel GetByEmail(string email)
         {
-            return _dbSet.FirstOrDefault(u => u.Email == email);
+            return _dbSet.FirstOrDefault(u => u.Email.ToUpper() == email.ToUpper());
         }
 
         public IEnumerable<UserModel> GetUserByRole(RoleEnum role)

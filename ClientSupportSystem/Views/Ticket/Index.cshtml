@@ -1,0 +1,81 @@
+﻿@model List<TicketModel>
+@{
+    ViewData["Title"] = "Tickets Page";
+}
+
+<div class="text-center">
+
+    <!-- Add ticket button -->
+    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+        <a class="btn btn-primary" role="button" asp-controller="Ticket" asp-action="Create">Create New Ticket</a>
+    </div>
+    <br />
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <!-- Alert Success -->
+        <div class="alert alert-success" role="alert">
+            <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">X</button>
+            @TempData["SuccessMessage"]
+        </div>
+    }
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <!-- Alert Error -->
+        <div class="alert alert-danger" role="alert">
+            <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">X</button>
+            @TempData["ErrorMessage"];
+        </div>
+    }
+    <br />
+
+
+
+    <h1 class="display-4">Tickets List</h1>
+
+    <table class="table" id="tickets-table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">Description</th>
+                <th scope="col">Status</th>
+                <th scope="col">Category</th>
+                <th scope="col">Priority</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <!-- Show all tickets registereds -->
+            @if (Model != null && Model.Any())
+            {
+                foreach (TicketModel ticket in Model)
+                {
+                    <tr>
+                        <th scope="row">@ticket.Id</th>
+                        <td>@ticket.Title</td>
+                        <td>@ticket.Description</td>
+                        <td>@ticket.Status.ToString()</td>
+                        <td>@ticket.Category.ToString()</td>
+                        <td>@ticket.Priority.ToString()</td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <a role="button" class="btn btn-primary" asp-route-id="@ticket.Id" asp-controller="Tickets" asp-action="Edit">Edit</a>
+                                <a role="button" class="btn btn-secondary" asp-route-id="@ticket.Id" asp-controller="Ticket" asp-action="DeleteConfirmation">Delete</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr class="odd"><td valing="top" colspan="5">No tickets registered</td></tr>
+            }
+
+        </tbody>
+
+    </table>
+
+</div>
