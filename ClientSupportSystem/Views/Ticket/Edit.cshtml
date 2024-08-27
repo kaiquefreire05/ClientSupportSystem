@@ -2,18 +2,14 @@
 @using ClientSupportSystem.Enums
 @model TicketDto
 @{
-    ViewData["Title"] = "Create Ticket";
+    ViewData["Title"] = "Edit Ticket";
 }
 
 <div class="text-center">
-
-    <h1 class="display-4">Create Ticket</h1>
-
+    <h1 class="display-4">Edit Ticket</h1>
 </div>
 
-<!-- Form -->
-<form asp-controller="Ticket" asp-action="Create" method="post">
-
+<form asp-controller="Ticket" asp-action="Edit" method="post">
     <div class="form-group">
         <label for="title" class="form-label">Title</label>
         <input type="text" asp-for="Title" class="form-control" placeholder="Entry the title">
@@ -68,7 +64,6 @@
     <br />
 
     <!-- Add and Remove button -->
-    <button type="submit" class="btn btn-primary btn-block">Add</button>
+    <button type="submit" class="btn btn-primary btn-block">Update</button>
     <a class="btn btn-secondary btn-block" asp-controller="Ticket" asp-action="Index" role="button">Return</a>
-
 </form>

@@ -44,7 +44,7 @@ namespace ClientSupportSystem.Repositories
             return _dbSet.Find(id);
         }
 
-        public T Update(T entity)
+        public virtual T Update(T entity)
         {
             if (entity == null) throw new ArgumentNullException(nameof(entity));
 

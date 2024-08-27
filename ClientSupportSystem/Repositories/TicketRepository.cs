@@ -35,5 +35,27 @@ namespace ClientSupportSystem.Repositories
 
             return ticket;
         }
+
+        public override TicketModel Update(TicketModel ticket)
+        {
+            // Verifyng if ticket exist
+            var existingTicket = _dbSet.Find(ticket.Id);
+            if (existingTicket == null)
+            {
+                throw new InvalidOperationException("Ticket not found.");
+            }
+
+            // Updating values
+            existingTicket.Title = ticket.Title;
+            existingTicket.Description = ticket.Description;
+            existingTicket.Status = ticket.Status;
+            existingTicket.Category = ticket.Category;
+            existingTicket.Priority = ticket.Priority;
+            existingTicket.UpdatedAt = DateTime.Now;
+
+            _context.SaveChanges();
+
+            return existingTicket;
+        }
     }
 }

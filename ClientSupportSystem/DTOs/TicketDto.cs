@@ -5,6 +5,7 @@ namespace ClientSupportSystem.DTOs
 {
     public class TicketDto
     {
+        public int? Id { get; set; }
         [Required(ErrorMessage = "Enter the title")]
         public string Title { get; set; }
         [Required(ErrorMessage = "Enter the description")]

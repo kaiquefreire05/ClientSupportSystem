@@ -1,4 +1,5 @@
-﻿using ClientSupportSystem.Models;
+﻿using ClientSupportSystem.Enums;
+using ClientSupportSystem.Models;
 
 namespace ClientSupportSystem.Helper.Interfaces
 {
@@ -8,5 +9,6 @@ namespace ClientSupportSystem.Helper.Interfaces
         void RemoveUserSession();
         UserModel GetUserSession();
         int? GetUserId();
+        RoleEnum GetUserRole();
     }
 }

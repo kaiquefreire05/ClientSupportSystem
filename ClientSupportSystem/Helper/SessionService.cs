@@ -1,7 +1,9 @@
-﻿using ClientSupportSystem.Helper.Interfaces;
+﻿using ClientSupportSystem.Enums;
+using ClientSupportSystem.Helper.Interfaces;
 using ClientSupportSystem.Models;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
+using System.Globalization;
 
 namespace ClientSupportSystem.Helper
 {
@@ -35,6 +37,12 @@ namespace ClientSupportSystem.Helper
             string userLogged = _contextAccessor.HttpContext.Session.GetString("loggedUserSession");
             if (string.IsNullOrEmpty(userLogged)) return null;
             return JsonConvert.DeserializeObject<UserModel>(userLogged);
+        }
+
+        public RoleEnum GetUserRole()
+        {
+            var user = GetUserSession();
+            return user.Role;
         }
 
         public void RemoveUserSession()
