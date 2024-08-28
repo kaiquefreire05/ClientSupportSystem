@@ -10,6 +10,7 @@ namespace ClientSupportSystem.Controllers
     [UserLoggedPage]
     public class TicketController : Controller
     {
+        // Dependencies Injection
         private readonly ITicketRepository _ticketRepository;
         private readonly ISessionService _sessionService;
         public TicketController(ITicketRepository ticketRepository, ISessionService sessionService)
@@ -21,7 +22,14 @@ namespace ClientSupportSystem.Controllers
         {
             var userRole = _sessionService.GetUserRole();
             IEnumerable<TicketModel> tickets = _ticketRepository.GetAll();
-            return View(tickets);
+
+            var ticketsView = new TicketsViewModel
+            {
+                Tickets = tickets,
+                UserRole = userRole
+            };
+
+            return View(ticketsView);
         }
 
         public IActionResult Create()
@@ -34,10 +42,10 @@ namespace ClientSupportSystem.Controllers
             var ticket = _ticketRepository.GetById(id);
             if (ticket == null)
             {
-                return NotFound("Ticket not found");
+                return NotFound("Ticket not found.");
             }
 
-            // Convertendo TicketModel para TicketDto
+            // Converting TicketModel to TicketDto
             var ticketDto = new TicketDto
             {
                 Id = ticket.Id,
@@ -84,7 +92,7 @@ namespace ClientSupportSystem.Controllers
                 TempData["ErrorMessage"] = "Invalid data, please check the form.";
                 return View("Create", ticketDto);
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 TempData["ErrorMessage"] = $"Ticket was not registered. Try again, error detail: {ex.Message}";
                 return RedirectToAction("Index");

@@ -17,7 +17,7 @@ namespace ClientSupportSystem.Repositories
             _dbSet = _context.Set<T>();
         }
 
-        public T Create(T entity)
+        public virtual T Create(T entity)
         {
             _dbSet.Add(entity);
             _context.SaveChanges();

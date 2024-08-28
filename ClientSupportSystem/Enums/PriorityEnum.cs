@@ -2,9 +2,9 @@
 {
     public enum PriorityEnum
     {
-        BAIXA = 1, 
-        MEDIA = 2,
-        ALTA = 3,
-        URGENTE = 4
+        LOW = 1, 
+        AVERAGE = 2,
+        HIGH = 3,
+        URGENT = 4
     }
 }

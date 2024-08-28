@@ -38,4 +38,4 @@ function getDatatable(id) {
 getDatatable("#tickets-table");
 
 // Configurando a tabela de usuários
-getDatatable("#tabela-usuarios")
+getDatatable("#users-table")

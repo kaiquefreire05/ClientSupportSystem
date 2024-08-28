@@ -1,4 +1,6 @@
-﻿@model List<TicketModel>
+﻿@using ClientSupportSystem.DTOs
+@using ClientSupportSystem.Enums
+@model TicketsViewModel
 @{
     ViewData["Title"] = "Tickets Page";
 }
@@ -6,6 +8,7 @@
 <div class="text-center">
 
     <!-- Add ticket button -->
+    <br />
     <div class="d-grid gap-2 d-md-flex justify-content-md-start">
         <a class="btn btn-primary" role="button" asp-controller="Ticket" asp-action="Create">Create New Ticket</a>
     </div>
@@ -25,7 +28,7 @@
         <!-- Alert Error -->
         <div class="alert alert-danger" role="alert">
             <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">X</button>
-            @TempData["ErrorMessage"];
+            @TempData["ErrorMessage"]
         </div>
     }
     <br />
@@ -49,21 +52,24 @@
 
         <tbody>
             <!-- Show all tickets registereds -->
-            @if (Model != null && Model.Any())
+            @if (Model != null && Model.Tickets.Any())
             {
-                foreach (TicketModel ticket in Model)
+                foreach (var ticket in Model.Tickets)
                 {
                     <tr>
                         <th scope="row">@ticket.Id</th>
                         <td>@ticket.Title</td>
                         <td>@ticket.Description</td>
-                        <td>@ticket.Status.ToString()</td>
-                        <td>@ticket.Category.ToString()</td>
-                        <td>@ticket.Priority.ToString()</td>
+                        <td>@Enum.GetName(typeof(StatusEnum), @ticket.Status)</td>
+                        <td>@Enum.GetName(typeof(CategoryEnum), @ticket.Category)</td>
+                        <td>@Enum.GetName(typeof(PriorityEnum), @ticket.Priority)</td>
                         <td>
                             <div class="btn-group" role="group">
-                                <a role="button" class="btn btn-primary" asp-route-id="@ticket.Id" asp-controller="Ticket" asp-action="Edit">Edit</a>
-                                <a role="button" class="btn btn-secondary" asp-route-id="@ticket.Id" asp-controller="Ticket" asp-action="DeleteConfirm">Delete</a>
+                                @if (Model.UserRole == ClientSupportSystem.Enums.RoleEnum.AGENT || Model.UserRole == ClientSupportSystem.Enums.RoleEnum.ADMIN)
+                                {
+                                    <a role="button" class="btn btn-primary" asp-route-id="@ticket.Id" asp-controller="Ticket" asp-action="Edit">Edit</a>
+                                    <a role="button" class="btn btn-secondary" asp-route-id="@ticket.Id" asp-controller="Ticket" asp-action="DeleteConfirm">Delete</a>
+                                }
                             </div>
                         </td>
                     </tr>

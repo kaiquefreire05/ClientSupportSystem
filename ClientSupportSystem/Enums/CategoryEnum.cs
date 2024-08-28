@@ -2,9 +2,9 @@
 {
     public enum CategoryEnum
     {
-        TECNICO = 1,
-        FINANCEIRO = 2,
+        TECHNICAL = 1,
+        FINANCIAL = 2,
         TI = 3,
-        GERAL = 4
+        GENERAL = 4
     }
 }

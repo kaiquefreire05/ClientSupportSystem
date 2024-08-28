@@ -13,11 +13,11 @@
         <li class="nav-item">
             <a class="nav-link text-dark" asp-area="" asp-controller="Ticket" asp-action="Index">Tickets</a>
         </li>
-        <!-- Condição para apenas mostrar "Usuarios" se o perfil for Admin -->
-        @if (Model.Role == ClientSupportSystem.Enums.RoleEnum.ADMINISTRADOR)
+        <!-- Condition to only show "Users" if the profile is Admin -->
+        @if (Model.Role == ClientSupportSystem.Enums.RoleEnum.ADMIN)
         {
             <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="" asp-controller="Usuario" asp-action="Index">Users</a>
+                <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Index">Users</a>
             </li>
         }
 

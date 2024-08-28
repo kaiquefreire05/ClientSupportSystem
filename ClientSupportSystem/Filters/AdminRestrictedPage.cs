@@ -26,7 +26,7 @@ namespace ClientSupportSystem.Filters
                         });
                 }
 
-                if (user.Role != ClientSupportSystem.Enums.RoleEnum.ADMINISTRADOR)
+                if (user.Role != ClientSupportSystem.Enums.RoleEnum.ADMIN)
                 {
                     context.Result = new RedirectToRouteResult(
                         new RouteValueDictionary{
