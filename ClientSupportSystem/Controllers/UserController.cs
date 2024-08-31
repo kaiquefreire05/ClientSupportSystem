@@ -36,7 +36,7 @@ namespace ClientSupportSystem.Controllers
             // Coverting UserModel to UserDTO
             UserDto userDto = new UserDto
             {
-                Id = id,
+                Id = user.Id,
                 Name = user.Name,
                 Email = user.Email,
                 Password = user.Password,
@@ -44,6 +44,12 @@ namespace ClientSupportSystem.Controllers
             };
 
             return View(userDto);
+        }
+
+        public IActionResult DeleteConfirm(int id)
+        {
+            UserModel user = _userRepository.GetById(id);
+            return View(user);
         }
 
         [HttpPost]
@@ -75,33 +81,55 @@ namespace ClientSupportSystem.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(UserDto userDto)
+        public IActionResult Edit(UserNoPassDto userNoPassDto)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    var existentUser = userDto.Id.HasValue ? _userRepository.GetById(userDto.Id.Value) : null;
+                    var existentUser = userNoPassDto.Id.HasValue ? _userRepository.GetById(userNoPassDto.Id.Value) : null;
                     if (existentUser == null)
                     {
                         return NotFound("User not found");
                     }
-                    existentUser.Name = userDto.Name;
-                    existentUser.Email = userDto.Email;
-                    existentUser.Role = userDto.Role;
-                    existentUser.CreatedAt = DateTime.Now;
+                    existentUser.Name = userNoPassDto.Name;
+                    existentUser.Email = userNoPassDto.Email;
+                    existentUser.Role = userNoPassDto.Role;
+                    existentUser.UpdatedAt = DateTime.Now;
 
                     _userRepository.Update(existentUser);
 
-                    TempData["SuccessMessage"] = "Ticket updated successfully.";
+                    TempData["SuccessMessage"] = "User updated successfully.";
                     return RedirectToAction("Index");
                 }
-                return View(userDto);
+                return View(userNoPassDto);
             }
             catch (Exception ex)
             {
                 TempData["ErrorMessage"] = $"An error ocurred. Error details: {ex.Message}";
-                return View(userDto);
+                return View(userNoPassDto);
+            }
+        }
+
+        public IActionResult Delete(int id)
+        {
+            try
+            {
+                bool success = _userRepository.Delete(id);
+                if (success)
+                {
+                    TempData["SuccessMessage"] = "User deleted successfuly.";
+                }
+                else
+                {
+                    TempData["ErrorMessage"] = "Error. User was not deleted.";
+                }
+                return RedirectToAction("Index");
+            }
+            catch (SystemException ex)
+            {
+                TempData["ErrorMessage"] = $"Error. User was not deleted. Details: {ex.Message}";
+                return RedirectToAction("Index");
             }
         }
     }

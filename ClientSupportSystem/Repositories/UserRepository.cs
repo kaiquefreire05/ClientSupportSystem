@@ -34,21 +34,21 @@ namespace ClientSupportSystem.Repositories
         public override UserModel Update(UserModel user)
         {
             // Verifyng if user exists
-            var findUser = _dbSet.Find(user.Id);
-            if (findUser == null)
+            var existingUser = _dbSet.Find(user.Id);
+            if (existingUser == null)
             {
                 throw new InvalidOperationException("User not found.");
             }
 
             // Updating values
-            findUser.Name = user.Name;
-            findUser.Email = user.Email;
-            findUser.Role = user.Role;
-            findUser.CreatedAt = DateTime.Now;
+            existingUser.Name = user.Name;
+            existingUser.Email = user.Email;
+            existingUser.Role = user.Role;
+            existingUser.CreatedAt = DateTime.Now;
 
             _context.SaveChanges();
 
-            return findUser;
+            return existingUser;
 
         }
     }

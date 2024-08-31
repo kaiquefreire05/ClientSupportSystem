@@ -3,12 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\kaiqu\\OneDrive\\Documentos\\csharp-codes\\ClientSupportSystem\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D010429A-C290-4D15-87F9-BFB3161E69EA}|ClientSupportSystem\\ClientSupportSystem.csproj|c:\\users\\kaiqu\\onedrive\\documentos\\csharp-codes\\clientsupportsystem\\clientsupportsystem\\views\\user\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{D010429A-C290-4D15-87F9-BFB3161E69EA}|ClientSupportSystem\\ClientSupportSystem.csproj|solutionrelative:clientsupportsystem\\views\\user\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D010429A-C290-4D15-87F9-BFB3161E69EA}|ClientSupportSystem\\ClientSupportSystem.csproj|c:\\users\\kaiqu\\onedrive\\documentos\\csharp-codes\\clientsupportsystem\\clientsupportsystem\\views\\ticket\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{D010429A-C290-4D15-87F9-BFB3161E69EA}|ClientSupportSystem\\ClientSupportSystem.csproj|solutionrelative:clientsupportsystem\\views\\ticket\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{D010429A-C290-4D15-87F9-BFB3161E69EA}|ClientSupportSystem\\ClientSupportSystem.csproj|c:\\users\\kaiqu\\onedrive\\documentos\\csharp-codes\\clientsupportsystem\\clientsupportsystem\\viewmodels\\ticketsviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D010429A-C290-4D15-87F9-BFB3161E69EA}|ClientSupportSystem\\ClientSupportSystem.csproj|solutionrelative:clientsupportsystem\\viewmodels\\ticketsviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -27,27 +23,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Edit.cshtml",
-              "DocumentMoniker": "C:\\Users\\kaiqu\\OneDrive\\Documentos\\csharp-codes\\ClientSupportSystem\\ClientSupportSystem\\Views\\User\\Edit.cshtml",
-              "RelativeDocumentMoniker": "ClientSupportSystem\\Views\\User\\Edit.cshtml",
-              "ToolTip": "C:\\Users\\kaiqu\\OneDrive\\Documentos\\csharp-codes\\ClientSupportSystem\\ClientSupportSystem\\Views\\User\\Edit.cshtml",
-              "RelativeToolTip": "ClientSupportSystem\\Views\\User\\Edit.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-08-28T19:38:20.056Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Edit.cshtml",
-              "DocumentMoniker": "C:\\Users\\kaiqu\\OneDrive\\Documentos\\csharp-codes\\ClientSupportSystem\\ClientSupportSystem\\Views\\Ticket\\Edit.cshtml",
-              "RelativeDocumentMoniker": "ClientSupportSystem\\Views\\Ticket\\Edit.cshtml",
-              "ToolTip": "C:\\Users\\kaiqu\\OneDrive\\Documentos\\csharp-codes\\ClientSupportSystem\\ClientSupportSystem\\Views\\Ticket\\Edit.cshtml",
-              "RelativeToolTip": "ClientSupportSystem\\Views\\Ticket\\Edit.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAYAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-08-28T19:38:24.818Z",
+              "Title": "TicketsViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\kaiqu\\OneDrive\\Documentos\\csharp-codes\\ClientSupportSystem\\ClientSupportSystem\\ViewModels\\TicketsViewModel.cs",
+              "RelativeDocumentMoniker": "ClientSupportSystem\\ViewModels\\TicketsViewModel.cs",
+              "ToolTip": "C:\\Users\\kaiqu\\OneDrive\\Documentos\\csharp-codes\\ClientSupportSystem\\ClientSupportSystem\\ViewModels\\TicketsViewModel.cs",
+              "RelativeToolTip": "ClientSupportSystem\\ViewModels\\TicketsViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-31T20:39:28.274Z",
               "EditorCaption": ""
             }
           ]

@@ -14,6 +14,7 @@ namespace ClientSupportSystem.Database.Maps
             builder.Property(u => u.Password).HasMaxLength(255).IsRequired();
             builder.Property(u => u.Role).IsRequired();
             builder.Property(u => u.CreatedAt).IsRequired();
+            builder.Property(u => u.UpdatedAt).IsRequired(false);
 
             // Relationships
 
