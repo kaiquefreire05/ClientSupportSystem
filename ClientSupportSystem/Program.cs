@@ -26,6 +26,7 @@ namespace ClientSupportSystem
             builder.Services.AddScoped<IFeedbackRepository, FeedbackRepository>();
             builder.Services.AddScoped<IKnowledgeRepository, KnowledgeRepository>();
             builder.Services.AddScoped<ITicketRepository, TicketRepository>();
+            builder.Services.AddScoped<ITicketCommentRepository, TicketCommentRepository>();
             builder.Services.AddScoped<IUserRepository, UserRepository>();
 
             builder.Services.AddSession(options =>

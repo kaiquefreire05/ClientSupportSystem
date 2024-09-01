@@ -1,4 +1,5 @@
-﻿using ClientSupportSystem.Models;
+﻿using ClientSupportSystem.Enums;
+using ClientSupportSystem.Models;
 
 namespace ClientSupportSystem.ViewModels
 {

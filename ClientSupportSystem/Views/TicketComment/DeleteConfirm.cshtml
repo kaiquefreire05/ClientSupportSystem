@@ -1,0 +1,10 @@
+﻿@model TicketCommentModel
+@{
+    ViewData["Title"] = "Comment deletion confirmation";
+}
+
+<div class="text-center">
+    <h3>Do you really want to delete the comment with text: (@Model.CommentText)?</h3>
+    <a class="btn btn-primary btn-block" role="button" asp-route-ticketId="@Model.TicketId" asp-controller="TicketComment" asp-action="Index">Cancel deletion</a>
+    <a class="btn btn-secondary btn-block" role="button" asp-route-id="@Model.Id" asp-controller="TicketComment" asp-action="Delete">Confirm deletion</a>
+</div>

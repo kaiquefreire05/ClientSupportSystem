@@ -34,8 +34,8 @@ function getDatatable(id) {
 }
 
 
-// Initialize DataTables on the table with id="tickets-table"
+// Initialize DataTables
 getDatatable("#tickets-table");
-
-// Configurando a tabela de usuários
-getDatatable("#users-table")
+getDatatable("#users-table");
+getDatatable("#tickets-comments-table");
+getDatatable("#closed-tickets-table");

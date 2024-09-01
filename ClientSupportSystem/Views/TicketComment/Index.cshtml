@@ -1,5 +1,87 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@using ClientSupportSystem.Enums
+@using ClientSupportSystem.ViewModels
+@inject ClientSupportSystem.Helper.Interfaces.ISessionService SessionService
+@model TicketsCommentViewModel
 @{
+    ViewData["Title"] = "Ticket Comments page";
 }
+
+<div class="text-center">
+
+    <!-- Success/Error Alerts -->
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            <button type="button" class="btn btn-danger btn-sm close-alert" aria-label="Close">X</button>
+            @TempData["SuccessMessage"]
+        </div>
+    }
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            <button type="button" class="btn btn-danger btn-sm close-alert" aria-label="Close">X</button>
+            @TempData["ErrorMessage"]
+        </div>
+    }
+    <br />
+
+    <h1 class="display-4">Ticket Comments List</h1>
+
+    <!-- Conditionally Render Table -->
+    @if (Model != null && Model.Comments.Any())
+    {
+        <table class="table" id="tickets-comments-table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Text</th>
+                    <th scope="col">Ticket Id</th>
+                    <th scope="col">User Id</th>
+                    <th scope="col">Created At</th>
+                    <th scope="col">Updated At</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var comment in Model.Comments)
+                {
+                    <tr>
+                        <th scope="row">@comment.Id</th>
+                        <td>@comment.CommentText</td>
+                        <td>@comment.TicketId</td>
+                        <td>@comment.UserId</td>
+                        <td>@comment.CreatedAt</td>
+                        <td>@comment.UpdatedAt</td>
+                        <td>
+                            @if (SessionService.GetUserRole() == RoleEnum.ADMIN || SessionService.GetUserId() == comment.UserId)
+                            {
+                                <a role="button" class="btn btn-warning" asp-route-id="@comment.Id" asp-controller="TicketComment" asp-action="Edit">
+                                    <i class="bi bi-pencil-square"></i> Edit
+                                </a>
+                                <a role="button" class="btn btn-danger" asp-route-id="@comment.Id" asp-controller="TicketComment" asp-action="DeleteConfirm">
+                                    <i class="bi bi-trash"></i> Delete
+                                </a>
+                            }
+                            
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <br />
+        <br />
+        <p class="display-6">No comments in this ticket.</p>
+    }
+
+    <!-- Return Button -->
+    <br />
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <a class="btn btn-primary btn-lg" role="button" asp-controller="Ticket" asp-action="Index">Return</a>
+    </div>
+
+</div>
+
+

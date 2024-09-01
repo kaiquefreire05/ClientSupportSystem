@@ -1,4 +1,5 @@
 ﻿using ClientSupportSystem.DTOs;
+using ClientSupportSystem.Enums;
 using ClientSupportSystem.Filters;
 using ClientSupportSystem.Helper.Interfaces;
 using ClientSupportSystem.Models;
@@ -30,6 +31,19 @@ namespace ClientSupportSystem.Controllers
             };
 
             return View(ticketsView);
+        }
+
+        public IActionResult ClosedTickets()
+        {
+            IEnumerable<TicketModel> closedTickets = _ticketRepository.GetTicketByStatus(StatusEnum.CLOSED);
+            var userRole = _sessionService.GetUserRole();
+
+            var closedTicketsView = new TicketsViewModel
+            {
+                Tickets = closedTickets,
+                UserRole = userRole
+            };
+            return View(closedTicketsView);
         }
 
         public IActionResult Create()

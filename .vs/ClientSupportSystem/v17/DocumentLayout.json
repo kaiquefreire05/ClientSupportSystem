@@ -3,8 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\kaiqu\\OneDrive\\Documentos\\csharp-codes\\ClientSupportSystem\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D010429A-C290-4D15-87F9-BFB3161E69EA}|ClientSupportSystem\\ClientSupportSystem.csproj|c:\\users\\kaiqu\\onedrive\\documentos\\csharp-codes\\clientsupportsystem\\clientsupportsystem\\viewmodels\\ticketsviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D010429A-C290-4D15-87F9-BFB3161E69EA}|ClientSupportSystem\\ClientSupportSystem.csproj|solutionrelative:clientsupportsystem\\viewmodels\\ticketsviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D010429A-C290-4D15-87F9-BFB3161E69EA}|ClientSupportSystem\\ClientSupportSystem.csproj|c:\\users\\kaiqu\\onedrive\\documentos\\csharp-codes\\clientsupportsystem\\clientsupportsystem\\views\\ticket\\closedtickets.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D010429A-C290-4D15-87F9-BFB3161E69EA}|ClientSupportSystem\\ClientSupportSystem.csproj|solutionrelative:clientsupportsystem\\views\\ticket\\closedtickets.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D010429A-C290-4D15-87F9-BFB3161E69EA}|ClientSupportSystem\\ClientSupportSystem.csproj|c:\\users\\kaiqu\\onedrive\\documentos\\csharp-codes\\clientsupportsystem\\clientsupportsystem\\views\\ticketcomment\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D010429A-C290-4D15-87F9-BFB3161E69EA}|ClientSupportSystem\\ClientSupportSystem.csproj|solutionrelative:clientsupportsystem\\views\\ticketcomment\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D010429A-C290-4D15-87F9-BFB3161E69EA}|ClientSupportSystem\\ClientSupportSystem.csproj|c:\\users\\kaiqu\\onedrive\\documentos\\csharp-codes\\clientsupportsystem\\clientsupportsystem\\views\\ticket\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D010429A-C290-4D15-87F9-BFB3161E69EA}|ClientSupportSystem\\ClientSupportSystem.csproj|solutionrelative:clientsupportsystem\\views\\ticket\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -23,14 +31,40 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "TicketsViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\kaiqu\\OneDrive\\Documentos\\csharp-codes\\ClientSupportSystem\\ClientSupportSystem\\ViewModels\\TicketsViewModel.cs",
-              "RelativeDocumentMoniker": "ClientSupportSystem\\ViewModels\\TicketsViewModel.cs",
-              "ToolTip": "C:\\Users\\kaiqu\\OneDrive\\Documentos\\csharp-codes\\ClientSupportSystem\\ClientSupportSystem\\ViewModels\\TicketsViewModel.cs",
-              "RelativeToolTip": "ClientSupportSystem\\ViewModels\\TicketsViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAoAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-31T20:39:28.274Z",
+              "Title": "ClosedTickets.cshtml",
+              "DocumentMoniker": "C:\\Users\\kaiqu\\OneDrive\\Documentos\\csharp-codes\\ClientSupportSystem\\ClientSupportSystem\\Views\\Ticket\\ClosedTickets.cshtml",
+              "RelativeDocumentMoniker": "ClientSupportSystem\\Views\\Ticket\\ClosedTickets.cshtml",
+              "ToolTip": "C:\\Users\\kaiqu\\OneDrive\\Documentos\\csharp-codes\\ClientSupportSystem\\ClientSupportSystem\\Views\\Ticket\\ClosedTickets.cshtml",
+              "RelativeToolTip": "ClientSupportSystem\\Views\\Ticket\\ClosedTickets.cshtml",
+              "ViewState": "AgIAABUAAAAAAAAAAAAqwCwAAABQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-01T23:01:04.882Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\kaiqu\\OneDrive\\Documentos\\csharp-codes\\ClientSupportSystem\\ClientSupportSystem\\Views\\TicketComment\\Index.cshtml",
+              "RelativeDocumentMoniker": "ClientSupportSystem\\Views\\TicketComment\\Index.cshtml",
+              "ToolTip": "C:\\Users\\kaiqu\\OneDrive\\Documentos\\csharp-codes\\ClientSupportSystem\\ClientSupportSystem\\Views\\TicketComment\\Index.cshtml",
+              "RelativeToolTip": "ClientSupportSystem\\Views\\TicketComment\\Index.cshtml",
+              "ViewState": "AgIAADAAAAAAAAAAAAAAAFEAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-01T23:36:33.496Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\kaiqu\\OneDrive\\Documentos\\csharp-codes\\ClientSupportSystem\\ClientSupportSystem\\Views\\Ticket\\Index.cshtml",
+              "RelativeDocumentMoniker": "ClientSupportSystem\\Views\\Ticket\\Index.cshtml",
+              "ToolTip": "C:\\Users\\kaiqu\\OneDrive\\Documentos\\csharp-codes\\ClientSupportSystem\\ClientSupportSystem\\Views\\Ticket\\Index.cshtml",
+              "RelativeToolTip": "ClientSupportSystem\\Views\\Ticket\\Index.cshtml",
+              "ViewState": "AgIAAEgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-01T23:36:16.988Z",
               "EditorCaption": ""
             }
           ]

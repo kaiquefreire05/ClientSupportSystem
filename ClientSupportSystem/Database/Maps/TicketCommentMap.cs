@@ -13,6 +13,7 @@ namespace ClientSupportSystem.Database.Maps
             builder.Property(tc => tc.TicketId).IsRequired();
             builder.Property(tc => tc.UserId).IsRequired();
             builder.Property(tc => tc.CreatedAt).IsRequired();
+            builder.Property(tc => tc.UpdatedAt).IsRequired(false);
 
             // Relationship
 
