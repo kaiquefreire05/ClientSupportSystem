@@ -1,0 +1,44 @@
+﻿@using CustomerSupportSystem.DTOs
+@model TicketCommentDto
+@{
+    ViewData["Title"] = "Add Comment";
+}
+
+<!-- Success/Error Alerts -->
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        <button type="button" class="btn btn-danger btn-sm close-alert" aria-label="Close">X</button>
+        @TempData["SuccessMessage"]
+    </div>
+}
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        <button type="button" class="btn btn-danger btn-sm close-alert" aria-label="Close">X</button>
+        @TempData["ErrorMessage"]
+    </div>
+}
+<br />
+
+<div class="text-center">
+    <h1 class="display-4">Add Comment</h1>
+</div>
+
+<!-- Form -->
+<form asp-controller="TicketComment" asp-action="Create" method="post">
+
+    <input type="hidden" asp-for="TicketId"/>
+
+    <div class="form-group">
+        <label for="comment" class="form-label">Comment</label>
+        <input type="text" asp-for="CommentText" class="form-control" placeholder="Enter the comment">
+        @Html.ValidationMessageFor(x => x.CommentText) <!-- Error message -->
+    </div>
+    <br />
+
+    <!-- Add and Remove button -->
+    <button type="submit" class="btn btn-primary btn-block">Add</button>
+    <a class="btn btn-secondary btn-block" asp-controller="Ticket" asp-action="Index" role="button">Return</a>
+
+</form>

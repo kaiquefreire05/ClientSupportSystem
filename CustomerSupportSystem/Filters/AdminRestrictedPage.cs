@@ -1,0 +1,40 @@
+﻿using CustomerSupportSystem.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
+using Newtonsoft.Json;
+
+namespace CustomerSupportSystem.Filters
+{
+    public class AdminRestrictedPage : ActionFilterAttribute
+    {
+        public override void OnActionExecuted(ActionExecutedContext context)
+        {
+            string userSession = context.HttpContext.Session.GetString("loggedUserSession");
+
+            if (string.IsNullOrEmpty(userSession))
+            {
+                context.Result = new RedirectToRouteResult(new RouteValueDictionary { { "controller", "Login" }, { "action", "Index" } } );
+            }
+            else
+            {
+                UserModel user = JsonConvert.DeserializeObject<UserModel>(userSession);
+                if (user == null)
+                {
+                    context.Result = new RedirectToRouteResult(
+                        new RouteValueDictionary {
+                            {"controller", "Login"}, {"action", "Index"}
+                        });
+                }
+
+                if (user.Role != CustomerSupportSystem.Enums.RoleEnum.ADMIN)
+                {
+                    context.Result = new RedirectToRouteResult(
+                        new RouteValueDictionary{
+                            {"controller", "Restrito"}, {"action", "Index"} 
+                        });
+                }
+            }
+            base.OnActionExecuted(context);
+        }
+    }
+}

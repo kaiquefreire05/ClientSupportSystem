@@ -1,0 +1,21 @@
+﻿@model List<TicketModel>
+@{
+    ViewData["Title"] = "Tickets with Feedback";
+}
+
+<div class="text-center">
+
+    <h1 class="display-4">Tickets with Feedback</h1>
+
+    @if (Model != null && Model.Any())
+    {
+        
+    }
+    else
+    {
+        <br />
+        <br />
+        <p class="display-6">No tickets with feedbacks registered.</p>
+    }
+
+</div>

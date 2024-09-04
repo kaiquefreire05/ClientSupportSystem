@@ -1,0 +1,54 @@
+﻿@using CustomerSupportSystem.DTOs
+@using CustomerSupportSystem.Enums
+@model UserDto
+@{
+    ViewData["Title"] = "Register User";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Register User</h1>
+</div>
+
+<!-- Form -->
+
+<form asp-controller="User" asp-action="Create" method="post">
+
+    <div class="form-group">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" asp-for="Name" class="form-control" placeholder="Entry the name">
+        @Html.ValidationMessageFor(x => x.Name) <!-- Error message -->
+    </div>
+    <br />
+
+    <div class="form-group">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" asp-for="Email" class="form-control" placeholder="Entry the email">
+        @Html.ValidationMessageFor(x => x.Email) <!-- Error message -->
+    </div>
+    <br />
+
+    <div class="form-group">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" asp-for="Password" class="form-control" placeholder="Entry the password">
+        @Html.ValidationMessageFor(x => x.Password) <!-- Error message -->
+    </div>
+    <br />
+
+    <div class="form-group">
+        <label for="role" class="form-label">Role</label>
+        <select asp-for="Role" class="form-control">
+            <option value="">Select role</option>
+            @foreach (var cat in Enum.GetValues(typeof(RoleEnum)))
+            {
+                <option value="@cat">@cat</option>
+            }
+        </select>
+        @Html.ValidationMessageFor(x => x.Role) <!-- Error message -->
+    </div>
+    <br />
+
+    <!-- Add and Remove button -->
+    <button type="submit" class="btn btn-primary btn-block">Add</button>
+    <a class="btn btn-secondary btn-block" asp-controller="User" asp-action="Index" role="button">Return</a>
+
+</form>

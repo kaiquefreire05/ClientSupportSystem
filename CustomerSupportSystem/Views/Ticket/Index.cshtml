@@ -1,0 +1,111 @@
+﻿@using CustomerSupportSystem.DTOs
+@using CustomerSupportSystem.Enums
+@model TicketsViewModel
+@{
+    ViewData["Title"] = "Tickets Page";
+}
+
+<div class="text-center">
+
+    <br />
+    <!-- Add ticket buttons -->
+    <div class="d-flex justify-content-between">
+        <a class="btn btn-primary" role="button" asp-controller="Ticket" asp-action="Create">Create New Ticket</a>
+        <a class="btn btn-primary" role="button" asp-controller="Ticket" asp-action="ClosedTickets">Closed Tickets</a>
+    </div>
+    <br />
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <!-- Alert Success -->
+        <div class="alert alert-success" role="alert">
+            <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">X</button>
+            @TempData["SuccessMessage"]
+        </div>
+    }
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <!-- Alert Error -->
+        <div class="alert alert-danger" role="alert">
+            <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">X</button>
+            @TempData["ErrorMessage"]
+        </div>
+    }
+    <br />
+
+
+
+    <h1 class="display-4">Tickets List</h1>
+
+    <!-- Show all tickets registereds -->
+    @if (Model != null && Model.Tickets.Any())
+    {
+        <table class="table" id="tickets-table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Priority</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var ticket in Model.Tickets)
+                {
+                    <tr>
+                        <th scope="row">@ticket.Id</th>
+                        <td>@ticket.Title</td>
+                        <td>@ticket.Description</td>
+                        <td>@Enum.GetName(typeof(StatusEnum), @ticket.Status)</td>
+                        <td>@Enum.GetName(typeof(CategoryEnum), @ticket.Category)</td>
+                        <td>@Enum.GetName(typeof(PriorityEnum), @ticket.Priority)</td>
+                        <td>
+                            <!-- Additional comments -->
+                            <div class="btn-group" role="group" aria-label="Ticket actions">
+                                <!-- Comments Button -->
+                                <a role="button" class="btn btn-info"
+                                   asp-route-ticketId="@ticket.Id" asp-controller="TicketComment" asp-action="Index">
+                                    <i class="bi bi-chat-dots"></i> Comments
+                                </a>
+
+                                <!-- Add Comment Button -->
+                                <a role="button" class="btn btn-success"
+                                   asp-route-ticketId="@ticket.Id" asp-controller="TicketComment" asp-action="Create">
+                                    <i class="bi bi-chat-dots"></i> Add <br />Comment
+                                </a>
+
+                                @if (Model.UserRole == CustomerSupportSystem.Enums.RoleEnum.AGENT || Model.UserRole == CustomerSupportSystem.Enums.RoleEnum.ADMIN)
+                                {
+                                    <!-- Edit Button -->
+                                    <a role="button" class="btn btn-warning"
+                                       asp-route-id="@ticket.Id" asp-controller="Ticket" asp-action="Edit">
+                                        <i class="bi bi-pencil-square"></i> Edit
+                                    </a>
+
+                                    <!-- Delete Button -->
+                                    <a role="button" class="btn btn-danger"
+                                       asp-route-id="@ticket.Id" asp-controller="Ticket" asp-action="DeleteConfirm">
+                                        <i class="bi bi-trash"></i> Delete
+                                    </a>
+                                }
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+    }
+    else
+    {
+        <br />
+        <br />
+        <p class="display-6">No tickets registered.</p>
+    }
+    
+</div>
