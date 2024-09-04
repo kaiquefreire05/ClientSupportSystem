@@ -39,3 +39,4 @@ getDatatable("#tickets-table");
 getDatatable("#users-table");
 getDatatable("#tickets-comments-table");
 getDatatable("#closed-tickets-table");
+getDatatable("#tickets-with-feedbacks");

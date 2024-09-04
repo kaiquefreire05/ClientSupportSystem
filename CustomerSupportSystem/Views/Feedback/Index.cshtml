@@ -1,4 +1,5 @@
-﻿@model List<TicketModel>
+﻿@using CustomerSupportSystem.Enums
+@model List<TicketModel>
 @{
     ViewData["Title"] = "Tickets with Feedback";
 }
@@ -9,7 +10,37 @@
 
     @if (Model != null && Model.Any())
     {
-        
+        <table class="table" id="tickets-with-feedbacks">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Priority</th>
+                    <th scope="col">Rating</th>
+                    <th scope="col">Feedback</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach(var ticket in Model)
+                {
+                    <tr>
+                        <th scope="row">@ticket.Id</th>
+                        <td>@ticket.Title</td>
+                        <td>@ticket.Description</td>
+                        <td>@Enum.GetName(typeof(StatusEnum), @ticket.Status)</td>
+                        <td>@Enum.GetName(typeof(CategoryEnum), @ticket.Category)</td>
+                        <td>@Enum.GetName(typeof(PriorityEnum), @ticket.Priority)</td>
+                        <td>@(ticket.Feedback != null ? ticket.Feedback.Rating.ToString() : "No Rating")</td>
+                        <td>@(ticket.Feedback != null ? ticket.Feedback.Comments : "No Feedback")</td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
     }
     else
     {

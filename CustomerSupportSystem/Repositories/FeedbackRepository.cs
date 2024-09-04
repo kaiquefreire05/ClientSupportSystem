@@ -15,7 +15,10 @@ namespace CustomerSupportSystem.Repositories
         public IEnumerable<TicketModel> GetTicketsWithFeedback()
         {
             return _dbSet.Include(f => f.Ticket)
-                .Select(t => t.Ticket).Distinct().ToList();
+                         .ThenInclude(t => t.Feedback)
+                         .Select(f => f.Ticket)
+                         .Distinct()
+                         .ToList();
         }
     }
 }

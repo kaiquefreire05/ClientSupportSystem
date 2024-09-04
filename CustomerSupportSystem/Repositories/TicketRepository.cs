@@ -21,16 +21,11 @@ namespace CustomerSupportSystem.Repositories
         public TicketModel GetTicketWithFeedback(int ticketId)
         {
             var ticket = _dbSet.Include(t => t.Feedback)
-                .FirstOrDefault(t => t.Id == ticketId && t.Feedback != null);
+                .FirstOrDefault(t => t.Id == ticketId);
 
             if (ticket == null)
             {
                 throw new InvalidOperationException("Ticket not found.");
-            }
-
-            if (ticket.Feedback == null)
-            {
-                throw new InvalidOperationException("Ticket does not have feedback associated.");
             }
 
             return ticket;

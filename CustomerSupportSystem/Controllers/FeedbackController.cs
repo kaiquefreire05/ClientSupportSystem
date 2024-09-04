@@ -40,8 +40,6 @@ namespace CustomerSupportSystem.Controllers
                 return RedirectToAction("Login", "User");
             }
 
-            Debug.WriteLine($"User ID from session: {userId.Value}");
-
             var user = _userRepository.GetById(userId.Value);
             if (user == null)
             {
@@ -65,13 +63,23 @@ namespace CustomerSupportSystem.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    TicketModel ticket = _ticketRepository.GetById(feedbackDto.TicketId);
+                    TicketModel ticket = _ticketRepository.GetTicketWithFeedback(feedbackDto.TicketId);
+
+                    // Check if the ticket exists and if its status is closed
                     if (ticket == null || ticket.Status != Enums.StatusEnum.CLOSED)
                     {
                         TempData["ErrorMessage"] = $"Ticket with id: {feedbackDto.TicketId} not found or not yet closed.";
                         return RedirectToAction("Index", "Ticket");
                     }
 
+                    // Check if the ticket already has feedback associated with it
+                    if (ticket.Feedback != null)
+                    {
+                        TempData["ErrorMessage"] = "This ticket already has feedback associated with it.";
+                        return RedirectToAction("Index", "Ticket");
+                    }
+
+                    // Retrieve the user by their ID
                     var user = _userRepository.GetById(feedbackDto.UserId);
                     if (user == null)
                     {
@@ -79,6 +87,7 @@ namespace CustomerSupportSystem.Controllers
                         return View(feedbackDto);
                     }
 
+                    // Create a new feedback instance
                     var feedback = new FeedbackModel
                     {
                         TicketId = feedbackDto.TicketId,
