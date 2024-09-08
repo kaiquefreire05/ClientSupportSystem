@@ -56,6 +56,75 @@ namespace CustomerSupportSystem.Controllers
             return View(feedbackDto);
         }
 
+        public IActionResult Edit(int id)
+        {
+            var userId = _sessionService.GetUserId();
+            if (!userId.HasValue)
+            {
+                TempData["ErrorMessage"] = "User is not logged in.";
+                return RedirectToAction("Login", "User");
+            }
+
+            var feedback = _feedbackRepository.GetById(id);
+            if (feedback == null)
+            {
+                TempData["ErrorMessage"] = "Invalid Feedback ID.";
+                return RedirectToAction("ClosedTickets", "Ticket");
+            }
+
+            var feedbackDto = new FeedbackDto
+            {
+                Rating = feedback.Rating,
+                Comments = feedback.Comments,
+                TicketId = feedback.TicketId,
+                UserId = userId.Value
+            };
+            return View(feedbackDto);
+        }
+
+        public IActionResult AllFeedbacks()
+        {
+            IEnumerable<FeedbackModel> feedbacks = _feedbackRepository.GetAll();
+            return View(feedbacks);
+        }
+
+        public IActionResult DeleteConfirm(int id)
+        {
+            var findedFeedback = _feedbackRepository.GetById(id);
+            return View(findedFeedback);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(FeedbackDto feedbackDto)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var existentFeedback = feedbackDto.Id.HasValue ? _feedbackRepository.GetById(feedbackDto.Id.Value) : null;
+                    if (existentFeedback == null)
+                    {
+                        return NotFound("Comment not found.");
+                    }
+
+                    existentFeedback.Rating = feedbackDto.Rating;
+                    existentFeedback.Comments = feedbackDto.Comments;
+                    existentFeedback.UpdatedAt = DateTime.Now;
+
+                    _feedbackRepository.Update(existentFeedback);
+                    TempData["SuccessMessage"] = "Feedback updated successfully.";
+                    return RedirectToAction("");
+                }
+                TempData["ErrorMessage"] = "Invalid data, please check the form.";
+                return View(feedbackDto);
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = $"An error occurred. Error details: {ex.Message}";
+                return View("ClosedTickets", "Ticket");
+            }
+        }
+
         [HttpPost]
         public IActionResult Create(FeedbackDto feedbackDto)
         {
@@ -109,6 +178,20 @@ namespace CustomerSupportSystem.Controllers
                 TempData["ErrorMessage"] = $"An error occurred while adding feedback. Please try again. Error details: {ex.Message}";
                 return View(feedbackDto);
             }
+        }
+
+        public IActionResult Delete(int id)
+        {
+            bool success = _feedbackRepository.Delete(id);
+            if (success)
+            {
+                TempData["SuccessMessage"] = "Feedback deleted successfully.";
+            }
+            else
+            {
+                TempData["ErrorMessage"] = "Feedback was not deleted.";
+            }
+            return RedirectToAction("AllFeedbacks");
         }
 
     }

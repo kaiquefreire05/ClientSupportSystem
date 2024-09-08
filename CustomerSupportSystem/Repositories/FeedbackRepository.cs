@@ -20,5 +20,19 @@ namespace CustomerSupportSystem.Repositories
                          .Distinct()
                          .ToList();
         }
+
+        public override FeedbackModel Update(FeedbackModel feedback)
+        {
+            var existentFeedback = _dbSet.Find(feedback.Id);
+            if (existentFeedback == null) throw new InvalidOperationException("Feedback not found.");
+
+            // Updating values
+            existentFeedback.UpdatedAt = DateTime.Now;
+            existentFeedback.Comments = feedback.Comments;
+            existentFeedback.Rating = feedback.Rating;
+
+            _context.SaveChanges();
+            return feedback;
+        }
     }
 }

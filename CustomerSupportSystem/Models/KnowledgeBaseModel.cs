@@ -1,5 +1,4 @@
 ﻿using CustomerSupportSystem.Enums;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace CustomerSupportSystem.Models
 {

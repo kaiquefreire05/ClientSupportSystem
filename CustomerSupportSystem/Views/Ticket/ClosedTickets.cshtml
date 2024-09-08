@@ -37,19 +37,32 @@
                         <td>@Enum.GetName(typeof(CategoryEnum), @closedTicket.Category)</td>
                         <td>@Enum.GetName(typeof(PriorityEnum), @closedTicket.Priority)</td>
                         <td>
+
                             <!-- Buttons -->
                             <div class="btn-group" role="group" aria-label="Ticket actions">
+                                <!-- Condition -->
                                 @if (SessionService.GetUserRole() == RoleEnum.ADMIN || (SessionService.GetUserId().HasValue 
                                 && SessionService.GetUserId() == closedTicket.UserId))
                                 {
-                                    <!-- Feedback Button -->
-                                    <a role="button" class="btn btn-info"
-                                       asp-route-ticketId="@closedTicket.Id" asp-controller="Feedback" asp-action="Create">
-                                        <i class="bi bi-chat-dots"></i> Add Feedback
-                                    </a>
-
+                                    <!-- Show Add Feedback Button Only if There is No Feedback -->
+                                    @if (closedTicket.Feedback == null)
+                                    {
+                                        <a role="button" class="btn btn-info"
+                                           asp-route-ticketId="@closedTicket.Id" asp-controller="Feedback" asp-action="Create">
+                                            <i class="bi bi-chat-dots"></i> Add Feedback
+                                        </a>
+                                    }               
+                                    else
+                                    {
+                                        <!-- Feedback Edit Button-->
+                                        <a role="button" class="btn btn-primary"
+                                           asp-controller="Feedback" asp-action="Edit" asp-route-id="@closedTicket.Feedback.Id">
+                                            <i class="bi bi-pencil-square">Edit</i>
+                                        </a>
+                                    }    
                                 }    
                             </div>
+
                         </td>
                     </tr>
                 }

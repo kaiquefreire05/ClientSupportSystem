@@ -131,6 +131,7 @@ namespace CustomerSupportSystem.Controllers
                     TempData["SuccessMessage"] = "Comment updated successfully.";
                     return RedirectToAction("Index", new { ticketId = ticketCommentDto.TicketId });
                 }
+                TempData["ErrorMessage"] = "Invalid data, please check the form.";
                 return View(ticketCommentDto);
             }
             catch (Exception ex)

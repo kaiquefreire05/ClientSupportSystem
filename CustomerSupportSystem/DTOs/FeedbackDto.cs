@@ -4,7 +4,7 @@ namespace CustomerSupportSystem.DTOs
 {
     public class FeedbackDto
     {
-        public string? Id { get; set; }
+        public int? Id { get; set; }
         [Required(ErrorMessage = "Enter the rating")]
         public int Rating { get; set; }
         [Required(ErrorMessage = "Enter the comment")]

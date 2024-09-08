@@ -13,9 +13,9 @@ namespace CustomerSupportSystem.Repositories
         {
             
         }
-        public IEnumerable<TicketModel> GetTicketByStatus(StatusEnum status)
+        public IEnumerable<TicketModel> GetTicketByStatusWithFeedback(StatusEnum status)
         {
-            return _dbSet.Where(t => t.Status == status).ToList();
+            return _dbSet.Include(t => t.Feedback).Where(t => t.Status == status).ToList();
         }
 
         public TicketModel GetTicketWithFeedback(int ticketId)

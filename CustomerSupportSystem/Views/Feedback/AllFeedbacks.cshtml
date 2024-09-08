@@ -1,0 +1,76 @@
+﻿@using CustomerSupportSystem.Enums
+@inject CustomerSupportSystem.Helper.Interfaces.ISessionService SessionService
+@model IEnumerable<FeedbackModel>
+@{
+    ViewData["Title"] = "All Feedbacks Page";
+}
+
+<div class="text-center">
+
+    <br />
+    <!-- Success Alert -->
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">X</button>
+            @TempData["SuccessMessage"]
+        </div>
+    }
+
+    <!-- Error Alert -->
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">X</button>
+            @TempData["ErrorMessage"]
+        </div>
+    }
+
+    @if (Model != null && Model.Any())
+    {
+        <table class="table" id="feedbacks-table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Rating</th>
+                    <th scope="col">Comment</th>
+                    <th scope="col">Ticket ID</th>
+                    <th scope="col">User ID</th>
+                    <th scope="col">Created At</th>
+                    <th scope="col">Updated At</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var feedback in Model)
+                {
+                    <tr>
+                        <th scope="row">@feedback.Id</th>
+                        <td>@feedback.Rating</td>
+                        <td>@feedback.Comments</td>
+                        <td>@feedback.TicketId</td>
+                        <td>@feedback.UserId</td>
+                        <td>@feedback.CreatedAt</td>
+                        <td>@feedback.UpdatedAt</td>
+                        <!-- Edit Button -->
+                        <td>
+                            @if (SessionService.GetUserRole() == RoleEnum.ADMIN || SessionService.GetUserId() == feedback.UserId)
+                            {
+                                <a role="button" class="btn btn-danger" asp-action="DeleteConfirm" asp-controller="Feedback" asp-route-id="@feedback.Id">
+                                    <i class="bi bi-pencil-square"></i> Delete
+                                </a>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <br />
+        <br />
+        <p class="display-6">No Feedbacks registerd.</p>
+    }
+
+</div>

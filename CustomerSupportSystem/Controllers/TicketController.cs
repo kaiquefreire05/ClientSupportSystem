@@ -35,7 +35,7 @@ namespace CustomerSupportSystem.Controllers
 
         public IActionResult ClosedTickets()
         {
-            IEnumerable<TicketModel> closedTickets = _ticketRepository.GetTicketByStatus(StatusEnum.CLOSED);
+            IEnumerable<TicketModel> closedTickets = _ticketRepository.GetTicketByStatusWithFeedback(StatusEnum.CLOSED);
             var userRole = _sessionService.GetUserRole();
 
             var closedTicketsView = new TicketsViewModel

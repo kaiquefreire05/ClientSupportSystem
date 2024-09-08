@@ -36,7 +36,6 @@
                         <td>@Enum.GetName(typeof(PriorityEnum), @ticket.Priority)</td>
                         <td>@(ticket.Feedback != null ? ticket.Feedback.Rating.ToString() : "No Rating")</td>
                         <td>@(ticket.Feedback != null ? ticket.Feedback.Comments : "No Feedback")</td>
-
                     </tr>
                 }
             </tbody>

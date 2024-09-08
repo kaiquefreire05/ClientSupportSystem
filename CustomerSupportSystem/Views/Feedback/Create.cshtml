@@ -41,6 +41,7 @@
     <div class="form-group">
         <label for="rating" class="form-label">Rating (0 to 10)</label>
         <input type="number" asp-for="Rating" class="form-control" min="0" max="10" placeholder="Enter a rating from 0 to 10">
+        @Html.ValidationMessageFor(x => x.Rating) <!-- Error message -->
     </div>
     <br />
 

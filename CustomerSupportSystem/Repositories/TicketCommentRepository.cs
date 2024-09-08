@@ -31,7 +31,7 @@ namespace CustomerSupportSystem.Repositories
             existentComment.UpdatedAt = comment.UpdatedAt;
 
             _context.SaveChanges();
-            return comment;
+            return existentComment;
         }
     }
 }

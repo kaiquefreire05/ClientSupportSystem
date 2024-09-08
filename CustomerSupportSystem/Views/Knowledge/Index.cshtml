@@ -1,0 +1,80 @@
+﻿@model IEnumerable<KnowledgeBaseModel>
+@{
+    Layout = "_LayoutKnowledge";
+    ViewData["Title"] = "Knowledge Base";
+}
+
+<div class="container mt-5">
+    <!-- Header -->
+    <div class="text-center mb-5">
+        <h1 class="display-4">Knowledge Base</h1>
+        <p class="lead">Explore articles and resources to find solutions.</p>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="row justify-content-center mb-4">
+        <div class="col-md-8">
+            <form asp-controller="KnowledgeBase" asp-action="Search" method="get">
+                <div class="input-group">
+                    <input type="text" name="query" class="form-control" placeholder="Search Knowledge Base..." />
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="submit">Search</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    @if (Model != null && Model.Any())
+    {
+        <!-- Knowledge Base List -->
+        <div class="row">
+            <!-- Loop through the Knowledge Base articles -->
+            @foreach (var knowledgeBase in Model)
+            {
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <!-- Title -->
+                            <h5 class="card-title">@knowledgeBase.Title</h5>
+
+                            <!-- Category -->
+                            <p class="card-text">
+                                <strong>Category:</strong> @knowledgeBase.Category
+                            </p>
+
+                            <!-- Content Summary -->
+                            <p class="card-text">
+                                @knowledgeBase.Content.Substring(0, 100)... <!-- Limit 100 characters -->
+                            </p>
+
+                            <!-- Footer with creation date and author -->
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small class="text-muted">
+                                    Created by: @knowledgeBase.CreatedByUser
+                                </small>
+                                <small class="text-muted">
+                                    @knowledgeBase.CreatedAt.ToShortDateString()
+                                </small>
+                            </div>
+
+                            <!-- Read More button -->
+                            <a href="@Url.Action("Details", "KnowledgeBase", new { id = knowledgeBase.Id })" class="btn btn-primary mt-2">
+                                Read More
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="text-center mb-5">
+            <br />
+            <br />
+            <p class="display-6">No knowledge base registered.</p>
+        </div>
+    }
+
+</div>

@@ -1,0 +1,10 @@
+﻿@model FeedbackModel
+@{
+    ViewData["Title"] = "Feedback deletion confirmation";
+}
+
+<div class="text-center">
+    <h3>Do you really want to delete the feedback from the ticket with ID: (@Model.TicketId)?</h3>
+    <a class="btn btn-primary btn-block" role="button" asp-route-id="@Model.Id" asp-controller="Feedback" asp-action="AllFeedbacks">Cancel deletion</a>
+    <a class="btn btn-secondary btn-block" role="button" asp-route-id="@Model.Id" asp-controller="Feedback" asp-action="Delete">Confirm deletion</a>
+</div>

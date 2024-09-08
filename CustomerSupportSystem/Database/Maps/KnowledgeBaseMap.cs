@@ -10,7 +10,7 @@ namespace CustomerSupportSystem.Database.Maps
         {
             builder.HasKey(kb => kb.Id);
             builder.Property(kb => kb.Title).IsRequired().HasMaxLength(100);
-            builder.Property(kb => kb.Content).IsRequired().HasMaxLength(255);
+            builder.Property(kb => kb.Content).IsRequired().HasMaxLength(255).HasColumnType("nvarchar(max)");
             builder.Property(kb => kb.Category).IsRequired();
             builder.Property(kb => kb.CreatedByUserId).IsRequired();
             builder.Property(kb => kb.CreatedAt).IsRequired();
