@@ -1,0 +1,10 @@
+﻿@model KnowledgeBaseModel
+@{
+    ViewData["Title"] = "Article deletion confirmation";
+}
+
+<div class="text-center">
+    <h3>Do you really want to delete the article with title: (@Model.Title)?</h3>
+    <a class="btn btn-primary btn-block" role="button" asp-controller="Knowledge" asp-action="YourArticles">Cancel deletion</a>
+    <a class="btn btn-secondary btn-block" role="button" asp-route-id="@Model.Id" asp-controller="Knowledge" asp-action="Delete">Confirm deletion</a>
+</div>

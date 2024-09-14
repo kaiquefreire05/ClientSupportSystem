@@ -49,7 +49,6 @@ namespace CustomerSupportSystem.Repositories
             existingTicket.UpdatedAt = DateTime.Now;
 
             _context.SaveChanges();
-
             return existingTicket;
         }
     }

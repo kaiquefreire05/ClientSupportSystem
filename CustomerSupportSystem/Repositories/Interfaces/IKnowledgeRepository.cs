@@ -7,5 +7,7 @@ namespace CustomerSupportSystem.Repositories.Interfaces
     {
         IEnumerable<KnowledgeBaseModel> GetArticlesByCategory(CategoryEnum category);
         IEnumerable<KnowledgeBaseModel> GetArticlesByUserId(int userId);
+        IEnumerable<KnowledgeBaseModel> GetAllWithUser();
+        KnowledgeBaseModel GetByIdWithUser(int id);
     }
 }

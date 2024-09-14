@@ -143,17 +143,25 @@ namespace CustomerSupportSystem.Controllers
 
         public IActionResult Delete(int id)
         {
-            var comment = _commentRepository.GetById(id);
-            bool success =  _commentRepository.Delete(id);
-            if (success)
+            try
             {
-                TempData["SuccessMessage"] = "Comment deleted successfuly.";
+                var comment = _commentRepository.GetById(id);
+                bool success = _commentRepository.Delete(id);
+                if (success)
+                {
+                    TempData["SuccessMessage"] = "Comment deleted successfuly.";
+                }
+                else
+                {
+                    TempData["ErrorMessage"] = "Comment was not deleted.";
+                }
+                return RedirectToAction("Index", new { ticketId = comment.TicketId });
             }
-            else
+            catch (Exception ex)
             {
-                TempData["ErrorMessage"] = "Comment was not deleted.";
+                TempData["ErrorMessage"] = $"Error. Comment was not deleted. Error: {ex.Message}";
+                return RedirectToAction("Index");
             }
-            return RedirectToAction("Index", new { ticketId = comment.TicketId });
         }
     }
 }

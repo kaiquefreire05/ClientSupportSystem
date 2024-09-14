@@ -1,0 +1,43 @@
+﻿@using CustomerSupportSystem.DTOs
+@using CustomerSupportSystem.Enums
+@model KnowledgeDto
+@{
+    ViewData["Title"] = "Edit Article";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Edit Article</h1>
+</div>
+
+<form asp-controller="Knowledge" asp-action="Edit" method="post">
+    <div class="form-group">
+        <label for="Title" class="form-label">Title</label>
+        <input type="text" asp-for="Title" class="form-control" placeholder="Entry the title">
+        @Html.ValidationMessageFor(x => x.Title)
+    </div>
+    <br />
+
+    <div class="form-group">
+        <label for="content" class="form-label">Content</label>
+        <textarea asp-for="Content" class="form-control" rows="10" placeholder="Entry the content"></textarea>
+        @Html.ValidationMessageFor(x => x.Content)
+    </div>
+    <br />
+
+    <div class="form-group">
+        <label for="category" class="form-label">Category</label>
+        <select asp-for="Category" class="form-control">
+            <option value="">Select category</option>
+            @foreach (var cat in Enum.GetValues(typeof(CategoryEnum)))
+            {
+                <option value="@cat">@cat</option>
+            }
+        </select>
+        @Html.ValidationMessageFor(x => x.Category)
+    </div>
+    <br />
+
+    <!-- Update and Return Button -->
+    <button type="submit" class="btn btn-primary btn-block">Update</button>
+    <a class="btn btn-secondary btn-block" asp-controller="Knowledge" asp-action="YourArticles" role="button">Return</a>
+</form>

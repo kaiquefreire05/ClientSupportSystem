@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<KnowledgeBaseModel>
 @{
+    ViewData["Title"] = "Your Articles";
     Layout = "_LayoutKnowledge";
-    ViewData["Title"] = "Knowledge Base";
 }
 
 <br />
+<!-- Success/Error Message -->
 @if (TempData["SuccessMessage"] != null)
 {
-    <!-- Alert Success -->
     <div class="alert alert-success" role="alert">
         <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">X</button>
         @TempData["SuccessMessage"]
@@ -16,22 +16,20 @@
 
 @if (TempData["ErrorMessage"] != null)
 {
-    <!-- Alert Error -->
     <div class="alert alert-danger" role="alert">
         <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">X</button>
         @TempData["ErrorMessage"]
     </div>
 }
-<br />
 
 <div class="container mt-5">
     <!-- Header -->
     <div class="text-center mb-5">
-        <h1 class="display-4">Knowledge Base</h1>
-        <p class="lead">Explore articles and resources to find solutions.</p>
+        <h1 class="text-center mb-5">Your Articles</h1>
+        <p class="lead">Explore and manage your articles</p>
     </div>
-
     <br />
+
     <!-- Search Bar -->
     <div class="row justify-content-center mb-4">
         <div class="col-md-8">
@@ -64,7 +62,6 @@
 
     @if (Model != null && Model.Any())
     {
-
         <!-- Knowledge Base List -->
         <div class="row">
             <!-- Loop through the Knowledge Base articles -->
@@ -96,10 +93,18 @@
                                 </small>
                             </div>
 
-                            <!-- Read More button -->
-                            <a href="@Url.Action("Details", "Knowledge", new { id = knowledgeBase.Id })" class="btn btn-primary mt-2">
+                            <!-- Read More Button -->
+
+                            <a class="btn btn-primary mt-2" asp-controller="Knowledge" asp-action="Details" asp-route-id="@knowledgeBase.Id">
                                 Read More
                             </a>
+                            
+                            <!-- Edit Button -->
+                            <a role="button" class="btn btn-secondary mt-2" asp-route-id="@knowledgeBase.Id" asp-controller="Knowledge" asp-action="Edit">Edit</a>
+
+                            <!-- Delete Button-->
+                            <a role="button" class="btn btn-danger mt-2" asp-route-id="@knowledgeBase.Id" asp-controller="Knowledge" asp-action="DeleteConfirm">Delete</a>
+
                         </div>
                     </div>
                 </div>

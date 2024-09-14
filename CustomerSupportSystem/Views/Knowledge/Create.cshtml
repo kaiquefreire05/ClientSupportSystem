@@ -1,0 +1,59 @@
+﻿@using CustomerSupportSystem.DTOs
+@using CustomerSupportSystem.Enums
+@model KnowledgeDto
+@{
+    ViewData["Title"] = "Create Knowledge Base";
+    Layout = "_LayoutDeslogado";
+}
+
+<br />
+@if (TempData["ErrorMessage"] != null)
+{
+    <!-- Alert Error -->
+    <div class="alert alert-danger" role="alert">
+        <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">X</button>
+        @TempData["ErrorMessage"]
+    </div>
+}
+<br />
+
+<div class="text-center">  
+    <h1 class="text-center">Create Knowledge Model</h1>
+</div>
+<br />
+
+<form asp-controller="Knowledge" asp-action="Create" method="post">
+
+    <div class="form-group">
+        <label for="title" class="form-label">Title</label>
+        <input type="text" asp-for="Title" class="form-control" placeholder="Entry the title">
+        @Html.ValidationMessageFor(x => x.Title)
+    </div>
+    <br />
+
+    <div class="form-group">
+        <label for="content" class="form-label">Content</label>
+        <textarea asp-for="Content" class="form-control" rows="10" placeholder="Entry the content"></textarea>
+        @Html.ValidationMessageFor(x => x.Content)
+    </div>
+    <br />
+
+    <div class="form-group">
+        <label for="category" class="form-label">Category</label>
+        <select asp-for="Category" class="form-control">
+            <option value="">Select category</option>
+            @foreach(var cat in Enum.GetValues(typeof(CategoryEnum)))
+            {
+                <option value="@cat">@cat</option>
+            }
+        </select>
+        @Html.ValidationMessageFor(x => x.Category)
+    </div>
+    <br />
+
+    <!-- Add and Return Button -->
+    <button type="submit" class="btn btn-primary btn-block">Create</button>
+    <a class="btn btn-secondary btn-block" role="button" asp-action="Index" asp-controller="Knowledge">Return</a>
+
+</form>
+

@@ -1,0 +1,36 @@
+﻿@model KnowledgeBaseModel
+@{
+    Layout = "_LayoutKnowledge";
+    ViewData["Title"] = "Knowledge Base Details";
+}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <h1 class="display-4">@Model.Title</h1>
+
+            <p class="lead">
+                <strong>Category:</strong> @Model.Category
+            </p>
+
+            <p class="mt-4">
+                @Model.Content
+            </p>
+
+            <!-- Footer with creation date and author -->
+            <div class="d-flex justify-content-between align-items-center mt-5">
+                <small class="text-muted">
+                    Created by: @Model.CreatedByUser.Name
+                </small>
+                <small class="text-muted">
+                    @Model.CreatedAt.ToShortDateString()
+                </small>
+            </div>
+
+            <!-- Link to go back -->
+            <div class="mt-4">
+                <a class="btn btn-secondary" role="button" asp-controller="Knowledge" asp-action="Index">Back to Knowledge Base</a>
+            </div>
+        </div>
+    </div>
+</div>
