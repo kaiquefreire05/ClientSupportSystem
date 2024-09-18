@@ -1,7 +1,6 @@
 ﻿using CustomerSupportSystem.DTOs;
 using CustomerSupportSystem.Filters;
 using CustomerSupportSystem.Models;
-using CustomerSupportSystem.Repositories;
 using CustomerSupportSystem.Repositories.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,6 +11,7 @@ namespace CustomerSupportSystem.Controllers
     {
         // Dependencies Injection
         private readonly IUserRepository _userRepository;
+
         public UserController(IUserRepository userRepository)
         {
             _userRepository = userRepository;
@@ -19,7 +19,7 @@ namespace CustomerSupportSystem.Controllers
 
         public IActionResult Index()
         {
-            IEnumerable<UserModel> usuarios = _userRepository.GetAll();
+            var usuarios = _userRepository.GetAll();
             return View(usuarios);
         }
 
@@ -31,16 +31,19 @@ namespace CustomerSupportSystem.Controllers
         public IActionResult Edit(int id)
         {
             var user = _userRepository.GetById(id);
-            if (user == null) return NotFound("User not found.");
+            if (user == null)
+            {
+                return NotFound("User not found.");
+            }
 
             // Coverting UserModel to UserDTO
-            UserDto userDto = new UserDto
+            var userDto = new UserDto
             {
                 Id = user.Id,
                 Name = user.Name,
                 Email = user.Email,
                 Password = user.Password,
-                Role = user.Role,
+                Role = user.Role
             };
 
             return View(userDto);
@@ -48,7 +51,7 @@ namespace CustomerSupportSystem.Controllers
 
         public IActionResult DeleteConfirm(int id)
         {
-            UserModel user = _userRepository.GetById(id);
+            var user = _userRepository.GetById(id);
             return View(user);
         }
 
@@ -59,7 +62,8 @@ namespace CustomerSupportSystem.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var newUser = new UserModel{
+                    var newUser = new UserModel
+                    {
                         Name = userDto.Name,
                         Email = userDto.Email,
                         Password = userDto.Password,
@@ -70,6 +74,7 @@ namespace CustomerSupportSystem.Controllers
                     TempData["SuccessMessage"] = "User created successfully";
                     return RedirectToAction("Index");
                 }
+
                 TempData["ErrorMessage"] = "Invalid data, Please check the form.";
                 return View("Create", userDto);
             }
@@ -87,11 +92,14 @@ namespace CustomerSupportSystem.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var existentUser = userNoPassDto.Id.HasValue ? _userRepository.GetById(userNoPassDto.Id.Value) : null;
+                    var existentUser = userNoPassDto.Id.HasValue
+                        ? _userRepository.GetById(userNoPassDto.Id.Value)
+                        : null;
                     if (existentUser == null)
                     {
                         return NotFound("User not found");
                     }
+
                     existentUser.Name = userNoPassDto.Name;
                     existentUser.Email = userNoPassDto.Email;
                     existentUser.Role = userNoPassDto.Role;
@@ -102,6 +110,7 @@ namespace CustomerSupportSystem.Controllers
                     TempData["SuccessMessage"] = "User updated successfully.";
                     return RedirectToAction("Index");
                 }
+
                 return View(userNoPassDto);
             }
             catch (Exception ex)
@@ -115,7 +124,7 @@ namespace CustomerSupportSystem.Controllers
         {
             try
             {
-                bool success = _userRepository.Delete(id);
+                var success = _userRepository.Delete(id);
                 if (success)
                 {
                     TempData["SuccessMessage"] = "User deleted successfuly.";
@@ -124,6 +133,7 @@ namespace CustomerSupportSystem.Controllers
                 {
                     TempData["ErrorMessage"] = "Error. User was not deleted.";
                 }
+
                 return RedirectToAction("Index");
             }
             catch (SystemException ex)

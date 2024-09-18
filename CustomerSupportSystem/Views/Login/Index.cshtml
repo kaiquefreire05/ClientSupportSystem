@@ -1,11 +1,10 @@
-﻿@using CustomerSupportSystem.DTOs
-@model LoginDto
+﻿@model CustomerSupportSystem.DTOs.LoginDto
 @{
     Layout = "_LayoutDeslogado";
     ViewData["Title"] = "Tela de Login";
 }
 
-<br />
+<br/>
 
 <!-- Alerts -->
 @if (TempData["ErrorMessage"] != null)
@@ -23,7 +22,8 @@
         @TempData["SuccessMessage"]
     </div>
 }
-<br />
+<br/>
+<br/>
 
 <form asp-controller="Login" asp-action="Enter">
 
@@ -31,7 +31,7 @@
         <label for="email" class="form-label">Email</label>
         <input type="email" asp-for="Email" class="form-control" id="email">
         <div id="loginHelp" class="form-text">Never share your email with anyone</div>
-        @Html.ValidationMessageFor(x => x.Email)  <!-- If camp is null show error message -->
+        @Html.ValidationMessageFor(x => x.Email) <!-- If camp is null show error message -->
     </div>
 
     <div class="mb-3">

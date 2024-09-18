@@ -1,5 +1,4 @@
-﻿@using CustomerSupportSystem.DTOs
-@model TicketCommentDto
+﻿@model CustomerSupportSystem.DTOs.TicketCommentDto
 @{
     ViewData["Title"] = "Edit Comment";
 }
@@ -15,7 +14,7 @@
         <input type="text" asp-for="CommentText" class="form-control" placeholder="Entry the comment">
         @Html.ValidationMessageFor(x => x.CommentText) <!-- Error message -->
     </div>
-    <br />
+    <br/>
 
     <!-- Update and Remove button -->
     <button type="submit" asp-route-ticketId="@Model.TicketId" class="btn btn-primary btn-block">Update</button>

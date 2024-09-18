@@ -1,12 +1,11 @@
-﻿@using CustomerSupportSystem.DTOs
-@using CustomerSupportSystem.Enums
-@model KnowledgeDto
+﻿@using CustomerSupportSystem.Enums
+@model CustomerSupportSystem.DTOs.KnowledgeDto
 @{
     ViewData["Title"] = "Create Knowledge Base";
     Layout = "_LayoutDeslogado";
 }
 
-<br />
+<br/>
 @if (TempData["ErrorMessage"] != null)
 {
     <!-- Alert Error -->
@@ -15,12 +14,12 @@
         @TempData["ErrorMessage"]
     </div>
 }
-<br />
+<br/>
 
-<div class="text-center">  
+<div class="text-center">
     <h1 class="text-center">Create Knowledge Model</h1>
 </div>
-<br />
+<br/>
 
 <form asp-controller="Knowledge" asp-action="Create" method="post">
 
@@ -29,31 +28,30 @@
         <input type="text" asp-for="Title" class="form-control" placeholder="Entry the title">
         @Html.ValidationMessageFor(x => x.Title)
     </div>
-    <br />
+    <br/>
 
     <div class="form-group">
         <label for="content" class="form-label">Content</label>
         <textarea asp-for="Content" class="form-control" rows="10" placeholder="Entry the content"></textarea>
         @Html.ValidationMessageFor(x => x.Content)
     </div>
-    <br />
+    <br/>
 
     <div class="form-group">
         <label for="category" class="form-label">Category</label>
         <select asp-for="Category" class="form-control">
             <option value="">Select category</option>
-            @foreach(var cat in Enum.GetValues(typeof(CategoryEnum)))
+            @foreach (var cat in Enum.GetValues(typeof(CategoryEnum)))
             {
                 <option value="@cat">@cat</option>
             }
         </select>
         @Html.ValidationMessageFor(x => x.Category)
     </div>
-    <br />
+    <br/>
 
     <!-- Add and Return Button -->
     <button type="submit" class="btn btn-primary btn-block">Create</button>
     <a class="btn btn-secondary btn-block" role="button" asp-action="Index" asp-controller="Knowledge">Return</a>
 
 </form>
-

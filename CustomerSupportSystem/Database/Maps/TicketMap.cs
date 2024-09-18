@@ -34,7 +34,6 @@ namespace CustomerSupportSystem.Database.Maps
                 .WithOne(t => t.Ticket)
                 .HasForeignKey<FeedbackModel>(f => f.TicketId)
                 .OnDelete(DeleteBehavior.Cascade); // Cascata ao deletar Ticket
-
         }
     }
 }

@@ -18,7 +18,8 @@ namespace CustomerSupportSystem
 
             // Database
             builder.Services.AddEntityFrameworkSqlServer()
-                .AddDbContext<ApplicationDBContext>(o => o.UseSqlServer(builder.Configuration.GetConnectionString("Database")));
+                .AddDbContext<ApplicationDBContext>(o =>
+                    o.UseSqlServer(builder.Configuration.GetConnectionString("Database")));
 
             builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
@@ -28,16 +29,17 @@ namespace CustomerSupportSystem
             builder.Services.AddScoped<ITicketRepository, TicketRepository>();
             builder.Services.AddScoped<ITicketCommentRepository, TicketCommentRepository>();
             builder.Services.AddScoped<IUserRepository, UserRepository>();
+            builder.Services.AddScoped<IEmail, Email>();
 
             builder.Services.AddSession(options =>
             {
-                options.IdleTimeout = TimeSpan.FromMinutes(30); // Defina o tempo de expiração da sessão
-                options.Cookie.HttpOnly = true; // Proteger o cookie de sessão
-                options.Cookie.IsEssential = true; // Necessário para funcionar mesmo com políticas de privacidade
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
             });
 
             var app = builder.Build();
-            
+
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
             {
@@ -56,8 +58,8 @@ namespace CustomerSupportSystem
             app.UseSession();
 
             app.MapControllerRoute(
-                name: "default",
-                pattern: "{controller=Login}/{action=Index}/{id?}");
+                "default",
+                "{controller=Login}/{action=Index}/{id?}");
 
             app.Run();
         }

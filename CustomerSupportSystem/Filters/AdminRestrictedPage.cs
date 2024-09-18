@@ -1,4 +1,5 @@
-﻿using CustomerSupportSystem.Models;
+﻿using CustomerSupportSystem.Enums;
+using CustomerSupportSystem.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Newtonsoft.Json;
@@ -9,31 +10,35 @@ namespace CustomerSupportSystem.Filters
     {
         public override void OnActionExecuted(ActionExecutedContext context)
         {
-            string userSession = context.HttpContext.Session.GetString("loggedUserSession");
+            var userSession = context.HttpContext.Session.GetString("loggedUserSession");
 
             if (string.IsNullOrEmpty(userSession))
             {
-                context.Result = new RedirectToRouteResult(new RouteValueDictionary { { "controller", "Login" }, { "action", "Index" } } );
+                context.Result = new RedirectToRouteResult(new RouteValueDictionary
+                    { { "controller", "Login" }, { "action", "Index" } });
             }
             else
             {
-                UserModel user = JsonConvert.DeserializeObject<UserModel>(userSession);
+                var user = JsonConvert.DeserializeObject<UserModel>(userSession);
                 if (user == null)
                 {
                     context.Result = new RedirectToRouteResult(
-                        new RouteValueDictionary {
-                            {"controller", "Login"}, {"action", "Index"}
+                        new RouteValueDictionary
+                        {
+                            { "controller", "Login" }, { "action", "Index" }
                         });
                 }
 
-                if (user.Role != CustomerSupportSystem.Enums.RoleEnum.ADMIN)
+                if (user.Role != RoleEnum.ADMIN)
                 {
                     context.Result = new RedirectToRouteResult(
-                        new RouteValueDictionary{
-                            {"controller", "Restrito"}, {"action", "Index"} 
+                        new RouteValueDictionary
+                        {
+                            { "controller", "Restrito" }, { "action", "Index" }
                         });
                 }
             }
+
             base.OnActionExecuted(context);
         }
     }

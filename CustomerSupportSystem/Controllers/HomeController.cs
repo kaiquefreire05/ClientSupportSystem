@@ -1,6 +1,4 @@
-using CustomerSupportSystem.Models;
 using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
 
 namespace CustomerSupportSystem.Controllers
 {

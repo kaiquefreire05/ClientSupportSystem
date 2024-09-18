@@ -1,7 +1,7 @@
-﻿@using CustomerSupportSystem.DTOs
+﻿@inject ISessionService SessionService
 @using CustomerSupportSystem.Enums
-@inject CustomerSupportSystem.Helper.Interfaces.ISessionService SessionService
-@model TicketsViewModel
+@using CustomerSupportSystem.Helper.Interfaces
+@model CustomerSupportSystem.DTOs.TicketsViewModel
 @{
     ViewData["Title"] = "Closed Tickets Page";
 }
@@ -15,68 +15,68 @@
     {
         <table class="table" id="closed-tickets-table">
             <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Title</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Category</th>
-                    <th scope="col">Priority</th>
-                    <th scope="col"></th>
-                </tr>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">Description</th>
+                <th scope="col">Status</th>
+                <th scope="col">Category</th>
+                <th scope="col">Priority</th>
+                <th scope="col"></th>
+            </tr>
             </thead>
             <tbody>
-                <!-- Show All Closed Tickets -->
-                @foreach(var closedTicket in Model.Tickets)
-                {
-                    <tr>
-                        <th scope="row">@closedTicket.Id</th>
-                        <td>@closedTicket.Title</td>
-                        <td>@closedTicket.Description</td>
-                        <td>@Enum.GetName(typeof(StatusEnum), @closedTicket.Status)</td>
-                        <td>@Enum.GetName(typeof(CategoryEnum), @closedTicket.Category)</td>
-                        <td>@Enum.GetName(typeof(PriorityEnum), @closedTicket.Priority)</td>
-                        <td>
+            <!-- Show All Closed Tickets -->
+            @foreach (var closedTicket in Model.Tickets)
+            {
+                <tr>
+                    <th scope="row">@closedTicket.Id</th>
+                    <td>@closedTicket.Title</td>
+                    <td>@closedTicket.Description</td>
+                    <td>@Enum.GetName(typeof(StatusEnum), closedTicket.Status)</td>
+                    <td>@Enum.GetName(typeof(CategoryEnum), closedTicket.Category)</td>
+                    <td>@Enum.GetName(typeof(PriorityEnum), closedTicket.Priority)</td>
+                    <td>
 
-                            <!-- Buttons -->
-                            <div class="btn-group" role="group" aria-label="Ticket actions">
-                                <!-- Condition -->
-                                @if (SessionService.GetUserRole() == RoleEnum.ADMIN || (SessionService.GetUserId().HasValue 
-                                && SessionService.GetUserId() == closedTicket.UserId))
+                        <!-- Buttons -->
+                        <div class="btn-group" role="group" aria-label="Ticket actions">
+                            <!-- Condition -->
+                            @if (SessionService.GetUserRole() == RoleEnum.ADMIN || (SessionService.GetUserId().HasValue
+                                                                                    && SessionService.GetUserId() == closedTicket.UserId))
+                            {
+                                <!-- Show Add Feedback Button Only if There is No Feedback -->
+                                @if (closedTicket.Feedback == null)
                                 {
-                                    <!-- Show Add Feedback Button Only if There is No Feedback -->
-                                    @if (closedTicket.Feedback == null)
-                                    {
-                                        <a role="button" class="btn btn-info"
-                                           asp-route-ticketId="@closedTicket.Id" asp-controller="Feedback" asp-action="Create">
-                                            <i class="bi bi-chat-dots"></i> Add Feedback
-                                        </a>
-                                    }               
-                                    else
-                                    {
-                                        <!-- Feedback Edit Button-->
-                                        <a role="button" class="btn btn-primary"
-                                           asp-controller="Feedback" asp-action="Edit" asp-route-id="@closedTicket.Feedback.Id">
-                                            <i class="bi bi-pencil-square">Edit</i>
-                                        </a>
-                                    }    
-                                }    
-                            </div>
+                                    <a role="button" class="btn btn-info"
+                                       asp-route-ticketId="@closedTicket.Id" asp-controller="Feedback" asp-action="Create">
+                                        <i class="bi bi-chat-dots"></i> Add Feedback
+                                    </a>
+                                }
+                                else
+                                {
+                                    <!-- Feedback Edit Button-->
+                                    <a role="button" class="btn btn-primary"
+                                       asp-controller="Feedback" asp-action="Edit" asp-route-id="@closedTicket.Feedback.Id">
+                                        <i class="bi bi-pencil-square">Edit</i>
+                                    </a>
+                                }
+                            }
+                        </div>
 
-                        </td>
-                    </tr>
-                }
+                    </td>
+                </tr>
+            }
             </tbody>
         </table>
     }
     else
     {
-        <br />
-        <br />
+        <br/>
+        <br/>
         <p class="display-6">No closed tickets.</p>
     }
     <!-- Return Button -->
-    <br />
+    <br/>
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
         <a class="btn btn-primary btn-lg" role="button" asp-controller="Ticket" asp-action="Index">Return</a>
     </div>

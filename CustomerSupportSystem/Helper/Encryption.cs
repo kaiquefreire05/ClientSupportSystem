@@ -16,6 +16,7 @@ namespace CustomerSupportSystem.Helper
             {
                 strHexa.Append(item.ToString("x2"));
             }
+
             return strHexa.ToString();
         }
     }

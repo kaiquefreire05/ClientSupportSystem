@@ -1,6 +1,5 @@
-﻿@using CustomerSupportSystem.DTOs
-@using CustomerSupportSystem.Enums
-@model TicketDto
+﻿@using CustomerSupportSystem.Enums
+@model CustomerSupportSystem.DTOs.TicketDto
 @{
     ViewData["Title"] = "Edit Ticket";
 }
@@ -15,14 +14,14 @@
         <input type="text" asp-for="Title" class="form-control" placeholder="Entry the title">
         @Html.ValidationMessageFor(x => x.Title) <!-- Error message -->
     </div>
-    <br />
+    <br/>
 
     <div class="form-group">
         <label for="description" class="form-label">Description</label>
         <input type="text" asp-for="Description" class="form-control" placeholder="Enter the description">
         @Html.ValidationMessageFor(x => x.Description) <!-- Error message -->
     </div>
-    <br />
+    <br/>
 
     <div class="form-group">
         <label for="status" class="form-label">Status</label>
@@ -35,7 +34,7 @@
         </select>
         @Html.ValidationMessageFor(x => x.Status) <!-- Error message -->
     </div>
-    <br />
+    <br/>
 
     <div class="form-group">
         <label for="category" class="form-label">Category</label>
@@ -48,7 +47,7 @@
         </select>
         @Html.ValidationMessageFor(x => x.Category) <!-- Error message -->
     </div>
-    <br />
+    <br/>
 
     <div class="form-group">
         <label for="priority" class="form-label">Priority</label>
@@ -61,7 +60,7 @@
         </select>
         @Html.ValidationMessageFor(x => x.Priority) <!-- Error message -->
     </div>
-    <br />
+    <br/>
 
     <!-- Update and Return button -->
     <button type="submit" class="btn btn-primary btn-block">Update</button>

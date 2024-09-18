@@ -1,4 +1,5 @@
-﻿using CustomerSupportSystem.Enums;
+﻿using CustomerSupportSystem.DTOs;
+using CustomerSupportSystem.Enums;
 using CustomerSupportSystem.Models;
 
 namespace CustomerSupportSystem.Repositories.Interfaces
@@ -7,6 +8,6 @@ namespace CustomerSupportSystem.Repositories.Interfaces
     {
         UserModel GetByEmail(string email);
         IEnumerable<UserModel> GetUserByRole(RoleEnum role);
-
+        UserModel ChangePassword(ChangePassDto password);
     }
 }

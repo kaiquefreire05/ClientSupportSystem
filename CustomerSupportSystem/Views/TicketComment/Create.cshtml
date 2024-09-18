@@ -1,5 +1,4 @@
-﻿@using CustomerSupportSystem.DTOs
-@model TicketCommentDto
+﻿@model CustomerSupportSystem.DTOs.TicketCommentDto
 @{
     ViewData["Title"] = "Add Comment";
 }
@@ -19,7 +18,7 @@
         @TempData["ErrorMessage"]
     </div>
 }
-<br />
+<br/>
 
 <div class="text-center">
     <h1 class="display-4">Add Comment</h1>
@@ -35,7 +34,7 @@
         <input type="text" asp-for="CommentText" class="form-control" placeholder="Enter the comment">
         @Html.ValidationMessageFor(x => x.CommentText) <!-- Error message -->
     </div>
-    <br />
+    <br/>
 
     <!-- Add and Remove button -->
     <button type="submit" class="btn btn-primary btn-block">Add</button>

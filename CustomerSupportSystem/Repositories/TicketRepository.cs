@@ -11,8 +11,8 @@ namespace CustomerSupportSystem.Repositories
         // Dependence Injection
         public TicketRepository(ApplicationDBContext context) : base(context)
         {
-            
         }
+
         public IEnumerable<TicketModel> GetTicketByStatusWithFeedback(StatusEnum status)
         {
             return _dbSet.Include(t => t.Feedback).Where(t => t.Status == status).ToList();

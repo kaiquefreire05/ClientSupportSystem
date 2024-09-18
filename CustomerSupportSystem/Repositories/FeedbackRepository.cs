@@ -15,16 +15,19 @@ namespace CustomerSupportSystem.Repositories
         public IEnumerable<TicketModel> GetTicketsWithFeedback()
         {
             return _dbSet.Include(f => f.Ticket)
-                         .ThenInclude(t => t.Feedback)
-                         .Select(f => f.Ticket)
-                         .Distinct()
-                         .ToList();
+                .ThenInclude(t => t.Feedback)
+                .Select(f => f.Ticket)
+                .Distinct()
+                .ToList();
         }
 
         public override FeedbackModel Update(FeedbackModel feedback)
         {
             var existentFeedback = _dbSet.Find(feedback.Id);
-            if (existentFeedback == null) throw new InvalidOperationException("Feedback not found.");
+            if (existentFeedback == null)
+            {
+                throw new InvalidOperationException("Feedback not found.");
+            }
 
             // Updating values
             existentFeedback.UpdatedAt = DateTime.Now;

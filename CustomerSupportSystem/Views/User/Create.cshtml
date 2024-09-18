@@ -1,6 +1,5 @@
-﻿@using CustomerSupportSystem.DTOs
-@using CustomerSupportSystem.Enums
-@model UserDto
+﻿@using CustomerSupportSystem.Enums
+@model CustomerSupportSystem.DTOs.UserDto
 @{
     ViewData["Title"] = "Register User";
 }
@@ -18,21 +17,21 @@
         <input type="text" asp-for="Name" class="form-control" placeholder="Entry the name">
         @Html.ValidationMessageFor(x => x.Name) <!-- Error message -->
     </div>
-    <br />
+    <br/>
 
     <div class="form-group">
         <label for="email" class="form-label">Email</label>
         <input type="email" asp-for="Email" class="form-control" placeholder="Entry the email">
         @Html.ValidationMessageFor(x => x.Email) <!-- Error message -->
     </div>
-    <br />
+    <br/>
 
     <div class="form-group">
         <label for="password" class="form-label">Password</label>
         <input type="password" asp-for="Password" class="form-control" placeholder="Entry the password">
         @Html.ValidationMessageFor(x => x.Password) <!-- Error message -->
     </div>
-    <br />
+    <br/>
 
     <div class="form-group">
         <label for="role" class="form-label">Role</label>
@@ -45,7 +44,7 @@
         </select>
         @Html.ValidationMessageFor(x => x.Role) <!-- Error message -->
     </div>
-    <br />
+    <br/>
 
     <!-- Add and Remove button -->
     <button type="submit" class="btn btn-primary btn-block">Add</button>

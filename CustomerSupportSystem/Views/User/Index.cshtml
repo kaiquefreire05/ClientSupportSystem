@@ -5,15 +5,14 @@
 }
 
 
-
 <div class="text-center">
 
     <!-- Add user button -->
-    <br />
+    <br/>
     <div class="d-grid gap-2 d-md-flex justify-content-md-start">
         <a class="btn btn-primary" role="button" asp-controller="User" asp-action="Create">Register new user</a>
     </div>
-    <br />
+    <br/>
 
     <!-- Alerts -->
     @if (TempData["SuccessMessage"] != null)
@@ -31,7 +30,7 @@
             @TempData["ErrorMessage"]
         </div>
     }
-    <br />
+    <br/>
 
     <h1 class="display-4">User List</h1>
 
@@ -40,43 +39,43 @@
     {
         <table class="table" id="users-table">
             <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Role</th>
-                    <th scope="col">Created At</th>
-                    <th scope="col">Updated At</th>
-                    <th scope="col"></th>
-                </tr>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Role</th>
+                <th scope="col">Created At</th>
+                <th scope="col">Updated At</th>
+                <th scope="col"></th>
+            </tr>
             </thead>
 
             <tbody>
-                @foreach (UserModel user in Model)
-                {
-                    <tr>
-                        <th scope="row">@user.Id</th>
-                        <td>@user.Name</td>
-                        <td>@user.Email</td>
-                        <td>@Enum.GetName(typeof(RoleEnum), @user.Role)</td>
-                        <td>@user.CreatedAt</td>
-                        <td>@user.UpdatedAt</td>
-                        <td>
-                            <div class="btn-group" role="group">
-                                <a role="button" class="btn btn-primary" asp-route-id="@user.Id" asp-controller="User" asp-action="Edit">Edit</a>
-                                <a role="button" class="btn btn-secondary" asp-route-id="@user.Id" asp-controller="User" asp-action="DeleteConfirm">Delete</a>
-                            </div>
-                        </td>
-                    </tr>
-                }
+            @foreach (var user in Model)
+            {
+                <tr>
+                    <th scope="row">@user.Id</th>
+                    <td>@user.Name</td>
+                    <td>@user.Email</td>
+                    <td>@Enum.GetName(typeof(RoleEnum), user.Role)</td>
+                    <td>@user.CreatedAt</td>
+                    <td>@user.UpdatedAt</td>
+                    <td>
+                        <div class="btn-group" role="group">
+                            <a role="button" class="btn btn-primary" asp-route-id="@user.Id" asp-controller="User" asp-action="Edit">Edit</a>
+                            <a role="button" class="btn btn-secondary" asp-route-id="@user.Id" asp-controller="User" asp-action="DeleteConfirm">Delete</a>
+                        </div>
+                    </td>
+                </tr>
+            }
 
             </tbody>
         </table>
     }
     else
     {
-        <br />
-        <br />
+        <br/>
+        <br/>
         <p class="display-6">No users registered.</p>
     }
 

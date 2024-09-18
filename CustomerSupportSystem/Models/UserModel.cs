@@ -22,10 +22,11 @@ namespace CustomerSupportSystem.Models
 
         // Methods
 
-        public bool ValidPassword(String password)
+        public bool ValidPassword(string password)
         {
             return Password == password.GenerateHash();
         }
+
         public void setPasswordHash()
         {
             Password = Password.GenerateHash();
@@ -33,7 +34,7 @@ namespace CustomerSupportSystem.Models
 
         public string GenerateNewPass()
         {
-            string newPass = Guid.NewGuid().ToString().Substring(0, 8);
+            var newPass = Guid.NewGuid().ToString().Substring(0, 8);
             Password = newPass.GenerateHash();
             return newPass;
         }

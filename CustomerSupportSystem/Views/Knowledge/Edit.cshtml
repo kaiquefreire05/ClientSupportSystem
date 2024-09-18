@@ -1,6 +1,5 @@
-﻿@using CustomerSupportSystem.DTOs
-@using CustomerSupportSystem.Enums
-@model KnowledgeDto
+﻿@using CustomerSupportSystem.Enums
+@model CustomerSupportSystem.DTOs.KnowledgeDto
 @{
     ViewData["Title"] = "Edit Article";
 }
@@ -15,14 +14,14 @@
         <input type="text" asp-for="Title" class="form-control" placeholder="Entry the title">
         @Html.ValidationMessageFor(x => x.Title)
     </div>
-    <br />
+    <br/>
 
     <div class="form-group">
         <label for="content" class="form-label">Content</label>
         <textarea asp-for="Content" class="form-control" rows="10" placeholder="Entry the content"></textarea>
         @Html.ValidationMessageFor(x => x.Content)
     </div>
-    <br />
+    <br/>
 
     <div class="form-group">
         <label for="category" class="form-label">Category</label>
@@ -35,7 +34,7 @@
         </select>
         @Html.ValidationMessageFor(x => x.Category)
     </div>
-    <br />
+    <br/>
 
     <!-- Update and Return Button -->
     <button type="submit" class="btn btn-primary btn-block">Update</button>

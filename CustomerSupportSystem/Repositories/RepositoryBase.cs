@@ -26,8 +26,11 @@ namespace CustomerSupportSystem.Repositories
 
         public bool Delete(int id)
         {
-            T entity = GetById(id);
-            if (entity == null) throw new System.Exception("Error deleting.");
+            var entity = GetById(id);
+            if (entity == null)
+            {
+                throw new Exception("Error deleting.");
+            }
 
             _dbSet.Remove(entity);
             _context.SaveChanges();
@@ -46,7 +49,10 @@ namespace CustomerSupportSystem.Repositories
 
         public virtual T Update(T entity)
         {
-            if (entity == null) throw new ArgumentNullException(nameof(entity));
+            if (entity == null)
+            {
+                throw new ArgumentNullException(nameof(entity));
+            }
 
             _dbSet.Attach(entity);
             _context.Entry(entity).State = EntityState.Modified;

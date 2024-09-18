@@ -11,18 +11,21 @@ namespace CustomerSupportSystem.Controllers
     [UserLoggedPage]
     public class TicketController : Controller
     {
+        private readonly ISessionService _sessionService;
+
         // Dependencies Injection
         private readonly ITicketRepository _ticketRepository;
-        private readonly ISessionService _sessionService;
+
         public TicketController(ITicketRepository ticketRepository, ISessionService sessionService)
         {
             _ticketRepository = ticketRepository;
             _sessionService = sessionService;
         }
+
         public IActionResult Index()
         {
             var userRole = _sessionService.GetUserRole();
-            IEnumerable<TicketModel> tickets = _ticketRepository.GetAll();
+            var tickets = _ticketRepository.GetAll();
 
             var ticketsView = new TicketsViewModel
             {
@@ -35,7 +38,7 @@ namespace CustomerSupportSystem.Controllers
 
         public IActionResult ClosedTickets()
         {
-            IEnumerable<TicketModel> closedTickets = _ticketRepository.GetTicketByStatusWithFeedback(StatusEnum.CLOSED);
+            var closedTickets = _ticketRepository.GetTicketByStatusWithFeedback(StatusEnum.CLOSED);
             var userRole = _sessionService.GetUserRole();
 
             var closedTicketsView = new TicketsViewModel
@@ -75,7 +78,7 @@ namespace CustomerSupportSystem.Controllers
 
         public IActionResult DeleteConfirm(int id)
         {
-            TicketModel ticket = _ticketRepository.GetById(id);
+            var ticket = _ticketRepository.GetById(id);
             return View(ticket);
         }
 
@@ -120,7 +123,7 @@ namespace CustomerSupportSystem.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var existingTicket = ticketDto.Id.HasValue? _ticketRepository.GetById(ticketDto.Id.Value) : null;
+                    var existingTicket = ticketDto.Id.HasValue ? _ticketRepository.GetById(ticketDto.Id.Value) : null;
                     if (existingTicket == null)
                     {
                         return NotFound("Ticket not found");
@@ -138,6 +141,7 @@ namespace CustomerSupportSystem.Controllers
                     TempData["SuccessMessage"] = "Ticket updated successfully.";
                     return RedirectToAction("Index");
                 }
+
                 return View(ticketDto);
             }
             catch (Exception ex)
@@ -151,7 +155,7 @@ namespace CustomerSupportSystem.Controllers
         {
             try
             {
-                bool success = _ticketRepository.Delete(id);
+                var success = _ticketRepository.Delete(id);
                 if (success)
                 {
                     TempData["SuccessMessage"] = "Ticket deleted successfully.";
@@ -160,6 +164,7 @@ namespace CustomerSupportSystem.Controllers
                 {
                     TempData["ErrorMessage"] = "Error. Ticket was not deleted.";
                 }
+
                 return RedirectToAction("Index");
             }
             catch (Exception ex)

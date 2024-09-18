@@ -11,8 +11,8 @@ namespace CustomerSupportSystem.Controllers
     {
         // Dependencies Injection
         private readonly ITicketCommentRepository _commentRepository;
-        private readonly ITicketRepository _ticketRepository;
         private readonly ISessionService _sessionService;
+        private readonly ITicketRepository _ticketRepository;
 
         public TicketCommentController(ITicketCommentRepository commentRepository, ITicketRepository ticketRepository
             , ISessionService sessionService)
@@ -24,13 +24,13 @@ namespace CustomerSupportSystem.Controllers
 
         public IActionResult Index(int ticketId)
         {
-            TicketModel ticket = _ticketRepository.GetById(ticketId);
-            IEnumerable<TicketCommentModel> ticketsComments = _commentRepository.GetCommentsByTicketId(ticketId);
+            var ticket = _ticketRepository.GetById(ticketId);
+            var ticketsComments = _commentRepository.GetCommentsByTicketId(ticketId);
 
             var ticketsCommentView = new TicketsCommentViewModel
             {
                 Ticket = ticket,
-                Comments = ticketsComments               
+                Comments = ticketsComments
             };
 
             return View(ticketsCommentView);
@@ -38,7 +38,6 @@ namespace CustomerSupportSystem.Controllers
 
         public IActionResult Create(int ticketId)
         {
-
             var ticketCommentDto = new TicketCommentDto
             {
                 TicketId = ticketId
@@ -67,7 +66,7 @@ namespace CustomerSupportSystem.Controllers
 
         public IActionResult DeleteConfirm(int id)
         {
-            TicketCommentModel comment = _commentRepository.GetById(id);
+            var comment = _commentRepository.GetById(id);
             return View(comment);
         }
 
@@ -99,6 +98,7 @@ namespace CustomerSupportSystem.Controllers
                     TempData["SuccessMessage"] = "Comment added successfully.";
                     return RedirectToAction("Index", new { ticketId = ticketCommentDto.TicketId });
                 }
+
                 TempData["ErrorMessage"] = "Invalid data. Please check the form.";
                 return View(ticketCommentDto);
             }
@@ -116,7 +116,9 @@ namespace CustomerSupportSystem.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var existentComment = ticketCommentDto.Id.HasValue ? _commentRepository.GetById(ticketCommentDto.Id.Value) : null;
+                    var existentComment = ticketCommentDto.Id.HasValue
+                        ? _commentRepository.GetById(ticketCommentDto.Id.Value)
+                        : null;
                     if (existentComment == null)
                     {
                         return NotFound("Comment not found.");
@@ -131,6 +133,7 @@ namespace CustomerSupportSystem.Controllers
                     TempData["SuccessMessage"] = "Comment updated successfully.";
                     return RedirectToAction("Index", new { ticketId = ticketCommentDto.TicketId });
                 }
+
                 TempData["ErrorMessage"] = "Invalid data, please check the form.";
                 return View(ticketCommentDto);
             }
@@ -146,7 +149,7 @@ namespace CustomerSupportSystem.Controllers
             try
             {
                 var comment = _commentRepository.GetById(id);
-                bool success = _commentRepository.Delete(id);
+                var success = _commentRepository.Delete(id);
                 if (success)
                 {
                     TempData["SuccessMessage"] = "Comment deleted successfuly.";
@@ -155,6 +158,7 @@ namespace CustomerSupportSystem.Controllers
                 {
                     TempData["ErrorMessage"] = "Comment was not deleted.";
                 }
+
                 return RedirectToAction("Index", new { ticketId = comment.TicketId });
             }
             catch (Exception ex)

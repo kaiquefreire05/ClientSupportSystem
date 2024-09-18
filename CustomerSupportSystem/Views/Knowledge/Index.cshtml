@@ -4,7 +4,7 @@
     ViewData["Title"] = "Knowledge Base";
 }
 
-<br />
+<br/>
 @if (TempData["SuccessMessage"] != null)
 {
     <!-- Alert Success -->
@@ -22,7 +22,7 @@
         @TempData["ErrorMessage"]
     </div>
 }
-<br />
+<br/>
 
 <div class="container mt-5">
     <!-- Header -->
@@ -31,13 +31,13 @@
         <p class="lead">Explore articles and resources to find solutions.</p>
     </div>
 
-    <br />
+    <br/>
     <!-- Search Bar -->
     <div class="row justify-content-center mb-4">
         <div class="col-md-8">
             <form asp-controller="Knowledge" asp-action="Search" method="get">
                 <div class="input-group">
-                    <input type="text" name="query" class="form-control" placeholder="Search Knowledge Base..." />
+                    <input type="text" name="query" class="form-control" placeholder="Search Knowledge Base..."/>
                     <div class="input-group-append">
                         <button class="btn btn-primary" type="submit">Search</button>
                     </div>
@@ -64,7 +64,6 @@
 
     @if (Model != null && Model.Any())
     {
-
         <!-- Knowledge Base List -->
         <div class="row">
             <!-- Loop through the Knowledge Base articles -->
@@ -109,8 +108,8 @@
     else
     {
         <div class="text-center mb-5">
-            <br />
-            <br />
+            <br/>
+            <br/>
             <p class="display-6">No knowledge base registered.</p>
         </div>
     }

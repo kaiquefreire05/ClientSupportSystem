@@ -4,7 +4,7 @@
     Layout = "_LayoutKnowledge";
 }
 
-<br />
+<br/>
 <!-- Success/Error Message -->
 @if (TempData["SuccessMessage"] != null)
 {
@@ -28,14 +28,14 @@
         <h1 class="text-center mb-5">Your Articles</h1>
         <p class="lead">Explore and manage your articles</p>
     </div>
-    <br />
+    <br/>
 
     <!-- Search Bar -->
     <div class="row justify-content-center mb-4">
         <div class="col-md-8">
             <form asp-controller="Knowledge" asp-action="Search" method="get">
                 <div class="input-group">
-                    <input type="text" name="query" class="form-control" placeholder="Search Knowledge Base..." />
+                    <input type="text" name="query" class="form-control" placeholder="Search Knowledge Base..."/>
                     <div class="input-group-append">
                         <button class="btn btn-primary" type="submit">Search</button>
                     </div>
@@ -98,7 +98,7 @@
                             <a class="btn btn-primary mt-2" asp-controller="Knowledge" asp-action="Details" asp-route-id="@knowledgeBase.Id">
                                 Read More
                             </a>
-                            
+
                             <!-- Edit Button -->
                             <a role="button" class="btn btn-secondary mt-2" asp-route-id="@knowledgeBase.Id" asp-controller="Knowledge" asp-action="Edit">Edit</a>
 
@@ -114,8 +114,8 @@
     else
     {
         <div class="text-center mb-5">
-            <br />
-            <br />
+            <br/>
+            <br/>
             <p class="display-6">No knowledge base registered.</p>
         </div>
     }

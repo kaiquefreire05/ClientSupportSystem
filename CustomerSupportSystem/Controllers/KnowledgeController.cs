@@ -20,7 +20,7 @@ namespace CustomerSupportSystem.Controllers
 
         public IActionResult Index()
         {
-            IEnumerable<KnowledgeBaseModel> knowledges = _knowledgeRepository.GetAllWithUser();
+            var knowledges = _knowledgeRepository.GetAllWithUser();
             return View(knowledges);
         }
 
@@ -49,7 +49,7 @@ namespace CustomerSupportSystem.Controllers
 
         public IActionResult DeleteConfirm(int id)
         {
-            KnowledgeBaseModel article = _knowledgeRepository.GetById(id);
+            var article = _knowledgeRepository.GetById(id);
             return View(article);
         }
 
@@ -68,7 +68,7 @@ namespace CustomerSupportSystem.Controllers
                 Title = article.Title,
                 Content = article.Content,
                 Category = article.Category,
-                CreatedByUserId = article.CreatedByUserId,
+                CreatedByUserId = article.CreatedByUserId
             };
 
             return View(articleDto);
@@ -77,7 +77,6 @@ namespace CustomerSupportSystem.Controllers
         [HttpGet]
         public IActionResult Search(string query)
         {
-
             ViewData["query"] = query;
 
             // Checking if the query field is empty
@@ -90,8 +89,8 @@ namespace CustomerSupportSystem.Controllers
             // Filtering articles when searching contains the search field
             var filteredArticles = _knowledgeRepository.GetAllWithUser()
                 .Where(kb => kb.Title.Contains(query, StringComparison.OrdinalIgnoreCase) ||
-                kb.Content.Contains(query, StringComparison.OrdinalIgnoreCase) ||
-                kb.Category.ToString().Contains(query, StringComparison.OrdinalIgnoreCase))
+                             kb.Content.Contains(query, StringComparison.OrdinalIgnoreCase) ||
+                             kb.Category.ToString().Contains(query, StringComparison.OrdinalIgnoreCase))
                 .ToList();
 
             if (!filteredArticles.Any())
@@ -99,6 +98,7 @@ namespace CustomerSupportSystem.Controllers
                 TempData["NoResults"] = "No result found for your search.";
                 return RedirectToAction("Index");
             }
+
             return View("Index", filteredArticles);
         }
 
@@ -122,6 +122,7 @@ namespace CustomerSupportSystem.Controllers
                     TempData["SuccessMessage"] = "Knowledge Base created successfully.";
                     return RedirectToAction("Index");
                 }
+
                 TempData["ErrorMessage"] = "Invalid data. Plese check the form.";
                 return View("Create", knowledgeDto);
             }
@@ -139,7 +140,9 @@ namespace CustomerSupportSystem.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var existingArticle = knowledgeDto.Id.HasValue ? _knowledgeRepository.GetById(knowledgeDto.Id.Value) : null;
+                    var existingArticle = knowledgeDto.Id.HasValue
+                        ? _knowledgeRepository.GetById(knowledgeDto.Id.Value)
+                        : null;
                     if (existingArticle == null)
                     {
                         return NotFound("Article not found.");
@@ -156,6 +159,7 @@ namespace CustomerSupportSystem.Controllers
                     TempData["SuccessMessage"] = "Article updated successfully.";
                     return RedirectToAction("YourArticles");
                 }
+
                 return View(knowledgeDto);
             }
             catch (Exception ex)
@@ -179,6 +183,7 @@ namespace CustomerSupportSystem.Controllers
                 {
                     TempData["ErrorMessage"] = "Article was not deleted.";
                 }
+
                 return RedirectToAction("Index");
             }
             catch (Exception ex)

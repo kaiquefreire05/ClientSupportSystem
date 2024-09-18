@@ -5,7 +5,7 @@ namespace CustomerSupportSystem.Models
     public class KnowledgeBaseModel
     {
         public int Id { get; set; }
-        public string Title { get; set; }    
+        public string Title { get; set; }
         public string Content { get; set; }
         public CategoryEnum Category { get; set; }
         public int CreatedByUserId { get; set; }

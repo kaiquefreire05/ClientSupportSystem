@@ -1,0 +1,56 @@
+﻿@using CustomerSupportSystem.DTOs
+@model ChangePassDto
+@{
+    ViewData["Title"] = "Change User Password";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Change User Password</h1>
+</div>
+
+<!-- Alerts -->
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">X</button>
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">X</button>
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+<!-- Form -->
+<form asp-action="Change" asp-controller="ChangePassword" method="post">
+
+    <div class="form-group">
+        <label for="password" class="form-label">Current Password</label>
+        <input type="password" asp-for="CurrentPassword" class="form-control" placeholder="Enter the user's current password" />
+        @Html.ValidationMessageFor(x => x.CurrentPassword)
+    </div>
+    <br />
+
+    <div class="form-group">
+        <label for="newPassword" class="form-label">New Password</label>
+        <input type="password" asp-for="NewPassword" class="form-control" placeholder="Enter the user's new password" />
+        @Html.ValidationMessageFor(x => x.NewPassword)
+    </div>
+    <br />
+
+    <div class="form-group">
+        <label for="confirmPassword" class="form-label">Confirm Password</label>
+        <input type="password" asp-for="ConfirmNewPassword" class="form-control" placeholder="Enter confirmation of new password" />
+        @Html.ValidationMessageFor(x => x.ConfirmNewPassword)
+    </div>
+    <br />
+
+    <!-- Buttons -->
+    <button type="submit" class="btn btn-primary btn-block">Change</button>
+    <a class="btn btn-secondary btn-block" asp-controller="Home" asp-action="Index" role="button">Return</a>
+
+</form>

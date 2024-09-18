@@ -1,6 +1,4 @@
-﻿using CustomerSupportSystem.Models;
-
-namespace CustomerSupportSystem.Repositories.Interfaces
+﻿namespace CustomerSupportSystem.Repositories.Interfaces
 {
     public interface IRepository<T> where T : class
     {

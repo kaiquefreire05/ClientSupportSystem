@@ -1,10 +1,9 @@
 ﻿using CustomerSupportSystem.DTOs;
+using CustomerSupportSystem.Enums;
 using CustomerSupportSystem.Helper.Interfaces;
 using CustomerSupportSystem.Models;
-using CustomerSupportSystem.Repositories;
 using CustomerSupportSystem.Repositories.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
 
 namespace CustomerSupportSystem.Controllers
 {
@@ -12,22 +11,22 @@ namespace CustomerSupportSystem.Controllers
     {
         // Dependencies Injection
         private readonly IFeedbackRepository _feedbackRepository;
-        private readonly ITicketRepository _ticketRepository;
         private readonly ISessionService _sessionService;
+        private readonly ITicketRepository _ticketRepository;
         private readonly IUserRepository _userRepository;
 
         public FeedbackController(IFeedbackRepository feedbackRepository, ITicketRepository ticketRepository
-            , ISessionService sessionServive, IUserRepository userRepository)
+            , ISessionService sessionService, IUserRepository userRepository)
         {
             _feedbackRepository = feedbackRepository;
             _ticketRepository = ticketRepository;
-            _sessionService = sessionServive;
+            _sessionService = sessionService;
             _userRepository = userRepository;
         }
 
         public IActionResult Index()
         {
-            IEnumerable<TicketModel> ticketsWithFeedback = _feedbackRepository.GetTicketsWithFeedback();
+            var ticketsWithFeedback = _feedbackRepository.GetTicketsWithFeedback();
             return View(ticketsWithFeedback);
         }
 
@@ -62,7 +61,7 @@ namespace CustomerSupportSystem.Controllers
             if (!userId.HasValue)
             {
                 TempData["ErrorMessage"] = "User is not logged in.";
-                return RedirectToAction("Login", "User");
+                return RedirectToAction("Index", "Login");
             }
 
             var feedback = _feedbackRepository.GetById(id);
@@ -84,14 +83,14 @@ namespace CustomerSupportSystem.Controllers
 
         public IActionResult AllFeedbacks()
         {
-            IEnumerable<FeedbackModel> feedbacks = _feedbackRepository.GetAll();
+            var feedbacks = _feedbackRepository.GetAll();
             return View(feedbacks);
         }
 
         public IActionResult DeleteConfirm(int id)
         {
-            var findedFeedback = _feedbackRepository.GetById(id);
-            return View(findedFeedback);
+            var foundFeedback = _feedbackRepository.GetById(id);
+            return View(foundFeedback);
         }
 
         [HttpPost]
@@ -101,7 +100,9 @@ namespace CustomerSupportSystem.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var existentFeedback = feedbackDto.Id.HasValue ? _feedbackRepository.GetById(feedbackDto.Id.Value) : null;
+                    var existentFeedback = feedbackDto.Id.HasValue
+                        ? _feedbackRepository.GetById(feedbackDto.Id.Value)
+                        : null;
                     if (existentFeedback == null)
                     {
                         return NotFound("Comment not found.");
@@ -113,15 +114,16 @@ namespace CustomerSupportSystem.Controllers
 
                     _feedbackRepository.Update(existentFeedback);
                     TempData["SuccessMessage"] = "Feedback updated successfully.";
-                    return RedirectToAction("");
+                    return RedirectToAction("Index");
                 }
+
                 TempData["ErrorMessage"] = "Invalid data, please check the form.";
                 return View(feedbackDto);
             }
             catch (Exception ex)
             {
                 TempData["ErrorMessage"] = $"An error occurred. Error details: {ex.Message}";
-                return View("ClosedTickets", "Ticket");
+                return RedirectToAction("ClosedTickets", "Ticket");
             }
         }
 
@@ -132,12 +134,13 @@ namespace CustomerSupportSystem.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    TicketModel ticket = _ticketRepository.GetTicketWithFeedback(feedbackDto.TicketId);
+                    var ticket = _ticketRepository.GetTicketWithFeedback(feedbackDto.TicketId);
 
                     // Check if the ticket exists and if its status is closed
-                    if (ticket == null || ticket.Status != Enums.StatusEnum.CLOSED)
+                    if (ticket == null || ticket.Status != StatusEnum.CLOSED)
                     {
-                        TempData["ErrorMessage"] = $"Ticket with id: {feedbackDto.TicketId} not found or not yet closed.";
+                        TempData["ErrorMessage"] =
+                            $"Ticket with id: {feedbackDto.TicketId} not found or not yet closed.";
                         return RedirectToAction("Index", "Ticket");
                     }
 
@@ -163,26 +166,28 @@ namespace CustomerSupportSystem.Controllers
                         UserId = feedbackDto.UserId,
                         Comments = feedbackDto.Comments,
                         Rating = feedbackDto.Rating,
-                        CreatedAt = DateTime.Now,
+                        CreatedAt = DateTime.Now
                     };
 
                     _feedbackRepository.Create(feedback);
                     TempData["SuccessMessage"] = "Feedback added successfully.";
                     return RedirectToAction("Index", "Ticket");
                 }
+
                 TempData["ErrorMessage"] = "Invalid data. Please check the form.";
                 return View(feedbackDto);
             }
             catch (Exception ex)
             {
-                TempData["ErrorMessage"] = $"An error occurred while adding feedback. Please try again. Error details: {ex.Message}";
+                TempData["ErrorMessage"] =
+                    $"An error occurred while adding feedback. Please try again. Error details: {ex.Message}";
                 return View(feedbackDto);
             }
         }
 
         public IActionResult Delete(int id)
         {
-            bool success = _feedbackRepository.Delete(id);
+            var success = _feedbackRepository.Delete(id);
             if (success)
             {
                 TempData["SuccessMessage"] = "Feedback deleted successfully.";
@@ -191,8 +196,8 @@ namespace CustomerSupportSystem.Controllers
             {
                 TempData["ErrorMessage"] = "Feedback was not deleted.";
             }
+
             return RedirectToAction("AllFeedbacks");
         }
-
     }
 }

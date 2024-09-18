@@ -14,6 +14,5 @@
 
         public virtual TicketModel Ticket { get; set; }
         public virtual UserModel User { get; set; }
-
     }
 }

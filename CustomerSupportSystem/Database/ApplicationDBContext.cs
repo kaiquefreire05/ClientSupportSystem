@@ -1,7 +1,6 @@
 ﻿using CustomerSupportSystem.Database.Maps;
 using CustomerSupportSystem.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Scaffolding;
 
 namespace CustomerSupportSystem.Database
 {
@@ -9,8 +8,8 @@ namespace CustomerSupportSystem.Database
     {
         public ApplicationDBContext(DbContextOptions<ApplicationDBContext> options) : base(options)
         {
-            
         }
+
         public DbSet<UserModel> Users { get; set; }
         public DbSet<TicketModel> Ticket { get; set; }
         public DbSet<TicketCommentModel> TicketComment { get; set; }

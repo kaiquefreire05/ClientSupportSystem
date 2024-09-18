@@ -1,5 +1,4 @@
-﻿@using CustomerSupportSystem.DTOs
-@model FeedbackDto
+﻿@model CustomerSupportSystem.DTOs.FeedbackDto
 @{
     ViewData["Title"] = "Create Feedback";
 }
@@ -19,7 +18,7 @@
         @TempData["ErrorMessage"]
     </div>
 }
-<br />
+<br/>
 
 <div class="text-center">
     <h1 class="display-4">Add Feedback</h1>
@@ -28,22 +27,22 @@
 <!-- Form -->
 <form asp-controller="Feedback" asp-action="Create" method="post">
 
-    <input type="hidden" asp-for="TicketId" />
-    <input type="hidden" asp-for="UserId" />
+    <input type="hidden" asp-for="TicketId"/>
+    <input type="hidden" asp-for="UserId"/>
 
     <div class="form-group">
         <label for="comment" class="form-label">Comment</label>
         <input type="text" asp-for="Comments" class="form-control" placeholder="Enter the comment">
         @Html.ValidationMessageFor(x => x.Comments) <!-- Error message -->
     </div>
-    <br />
+    <br/>
 
     <div class="form-group">
         <label for="rating" class="form-label">Rating (0 to 10)</label>
         <input type="number" asp-for="Rating" class="form-control" min="0" max="10" placeholder="Enter a rating from 0 to 10">
         @Html.ValidationMessageFor(x => x.Rating) <!-- Error message -->
     </div>
-    <br />
+    <br/>
 
     <!-- Add and Remove button -->
     <button type="submit" class="btn btn-primary btn-block">Add</button>
