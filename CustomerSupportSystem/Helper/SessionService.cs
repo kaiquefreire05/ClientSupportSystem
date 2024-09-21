@@ -18,7 +18,7 @@ namespace CustomerSupportSystem.Helper
         public void CreateUserSession(UserModel user)
         {
             var userJson = JsonConvert.SerializeObject(user);
-#pragma warning disable CS8602 // Dereference of a possibly null reference.
+            #pragma warning disable CS8602 // Dereference of a possibly null reference.
             _contextAccessor.HttpContext.Session.SetString("loggedUserSession", userJson);
         }
 
@@ -30,7 +30,7 @@ namespace CustomerSupportSystem.Helper
 
         public UserModel GetUserSession()
         {
-#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
+            #pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
             var userLogged = _contextAccessor.HttpContext.Session.GetString("loggedUserSession");
             if (string.IsNullOrEmpty(userLogged))
             {

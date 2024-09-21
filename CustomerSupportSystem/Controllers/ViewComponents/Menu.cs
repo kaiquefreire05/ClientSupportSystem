@@ -17,5 +17,7 @@ namespace CustomerSupportSystem.Controllers.ViewComponents
             var user = JsonConvert.DeserializeObject<UserModel>(userSession);
             return View("Default", user);
         }
+
     }
 }
+

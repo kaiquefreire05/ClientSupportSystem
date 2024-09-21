@@ -53,10 +53,10 @@ namespace CustomerSupportSystem
 
             app.UseRouting();
 
-            app.UseAuthorization();
-
             app.UseSession();
 
+            app.UseAuthorization();
+            
             app.MapControllerRoute(
                 "default",
                 "{controller=Login}/{action=Index}/{id?}");

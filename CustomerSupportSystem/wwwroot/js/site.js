@@ -33,6 +33,14 @@ function getDatatable(id) {
     });
 }
 
+// Function to confirm logout
+function confirmLogout(event) {
+    event.preventDefault();
+    if (confirm("Você tem certeza que deseja sair?")) {
+        window.location.href = '@Url.Action("Logout", "Login")';
+    }
+}
+
 
 // Initialize DataTables
 getDatatable("#tickets-table");
